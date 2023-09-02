@@ -34,3 +34,9 @@ Sigue estos pasos para instalar y desplegar el proyecto:
    ```bash
       npm install
    ```
+
+3. Para levantar un servidor local usamos el comando :
+
+   ```bash
+      npm run dev
+   ```
