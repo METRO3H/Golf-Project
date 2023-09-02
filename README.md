@@ -1,14 +1,22 @@
-# Nombre del Proyecto
+# Golf Project
 
 Breve descripción de tu proyecto.
 
 ## Requisitos Previos
 
-Asegúrate de tener instalados los siguientes requisitos antes de comenzar:
+Antes de comenzar asegúrate de tener instalado Git y la version LTS (La mas segura) de Node.js
 
-- Requisito 1
-- Requisito 2
-- Requisito 3
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/es)
+
+Luego, asegurate de tener instaladas las dependencias con los comandos :
+
+   ```bash
+   git --version
+   ```
+   ```bash
+   node --version
+   ```
 
 ## Instalación
 
@@ -17,4 +25,5 @@ Sigue estos pasos para instalar y desplegar el proyecto:
 1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-proyecto.git
+   git clone https://github.com/METRO3H/Golf-Project
+   ```
