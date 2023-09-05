@@ -1,9 +1,10 @@
 import "./styles/index.css"
 
-
+let counter = 0
 const bob = document.getElementById("bob")
 const output = document.getElementById("output")
-let counter = 0
+output.textContent = counter
+
 
 bob.addEventListener("click", function(){
     counter = counter + 1
