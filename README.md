@@ -33,7 +33,7 @@ Sigue estos pasos para instalar y desplegar el proyecto:
 
    ```bash
       npm install
-   ```
+
 
 3. Crear servidor local de desarrollo
 
