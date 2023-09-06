@@ -7,16 +7,17 @@
 }
 
 #bob{
-    cursor: pointer;
     width: 250px;
     height: 100px;
     display: flex;
     justify-content: center;    
     align-items: center;
     background-color: darkblue;
-    outline: black inset 2px;
+    outline: black double 2px;
     color: white;
-
+}
+#bob:hover{
+    scale: 101%;
 }
 #output{
     width: 250px;
