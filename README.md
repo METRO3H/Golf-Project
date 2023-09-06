@@ -32,84 +32,94 @@ Sigue estos pasos para instalar y desplegar el proyecto:
 2. Instalar las dependencias necesarias gracias al archivo package.json
 
    ```bash
-      npm install
-
+   npm install
+   ```
 
 3. Crear servidor local de desarrollo
 
-  ```bash
-    npm install webpack-dev-server -D
-  ```
+   ```bash
+   npm install webpack-dev-server -D
+   ```
 
 4. Ejecutar servidor local de desarrollo
 
-  ```bash
-    npx webpack-dev-server
-  ```
+   ```bash
+   npx webpack-dev-server
+   ```
 
 ## Instalar todo desde cero
 
 1. Instalar webpack
 
- ```bash
+   ```bash
      npm install webpack
-  ```
+   ```
 
 2. Instalar HTML webpack plugin
-
- ```bash
+ 
+   ```bash
     npm install html-webpack-plugin -D
-  ```
+   ```
 
-2. Instalar webpack CSS loader
+3. Instalar webpack CSS loader
 
- ```bash
+   ```bash
     npm install css-loader -D
     npm install style-loader -D
-  ```
+   ```
 
-3. Crear archivo webpack.config.js en la raiz del repositorio
+4. Crear archivo webpack.config.js en la raiz del repositorio
 
-  ```bash
+   ```bash
       mkdir webpack.config.js
-  ```
+   ```
 
-4. Configurar archivo webpack.config.js
+5. Configurar archivo webpack.config.js
 
-  ```js
-  const HtmlWebpackPlugin = require("html-webpack-plugin");
-  module.exports = {
-    mode: "development",
-    entry: "./src/index.js",
+   ```js
+   const HtmlWebpackPlugin = require("html-webpack-plugin")
+   module.exports = {
+   
+       mode: 'development',
+       entry: './src/index.js',
+       
+       output:{
+           path: __dirname + '/production',
+           filename: 'bundle.js'
+       },
+       plugins : [
+           new HtmlWebpackPlugin({
+               template:'./public/index.html'
+           })
+       ],
+       module: {
+           rules: [
+             {
+               test: /\.css$/i,
+               use: ["style-loader", "css-loader"],
+             },
+           ],
+         },
+   }
+   ```
 
-    output: {
-      path: __dirname + "/production",
-      filename: "bundle.js",
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: "./public/index.html",
-      }),
-    ],
-    module: {
-      rules: [
-        {
-          test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
-        },
-      ],
-    },
-  };
-  ```
+6. Crear servidor local de desarrollo
 
-5. Crear servidor local de desarrollo
-
-```bash
+   ```bash
     npm install webpack-dev-server -D
-```
+   ```
 
-6. Ejecutar servidor local de desarrollo
+7. Ejecutar servidor local de desarrollo
 
-```bash
+   ```bash
     npx webpack-dev-server
+   ```
+## Usar Bootstrap
+Para instalar la libreria Bootstrap corre el siguiente comando :
+```bash
+npm i bootstrap@5.3.1 -D
+```
+Luego, si quieres usar la libreria debes importarla en el archivo javascript que quieres usar:
+```js
+import "bootstrap/dist/css/bootstrap.min.css"
 ```
