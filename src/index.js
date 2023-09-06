@@ -1,5 +1,5 @@
 import "./styles/index.css"
-
+import "bootstrap/dist/css/bootstrap.min.css"
 let counter = 0
 const bob = document.getElementById("bob")
 const output = document.getElementById("output")
