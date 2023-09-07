@@ -6,11 +6,11 @@ export default function (Parent_Element) {
   Parent_Element.innerHTML = Table_HTML;
 
   for (let Name of Stat_Name) {
-    let Stats_Length = Object.keys(Stat_Value[Name].length);
+    let Stats_Length = Object.keys(Stat_Value[Name]).length;
 
     for (let i = 0; i < Stats_Length; i++) {
-
-      console.log(`(${Name},${i})`)
+        let Cell_ID = `(${Name},${i})`
+        document.getElementById(Cell_ID).textContent = Stat_Value[Name][i] 
     }
   }
 }
