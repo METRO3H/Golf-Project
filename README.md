@@ -61,11 +61,12 @@ Sigue estos pasos para instalar y desplegar el proyecto:
     npm install html-webpack-plugin -D
    ```
 
-3. Instalar webpack CSS loader
+3. Instalar webpack loaders
 
    ```bash
     npm install css-loader -D
     npm install style-loader -D
+    npm install html-loader -D 
    ```
 
 4. Crear archivo webpack.config.js en la raiz del repositorio

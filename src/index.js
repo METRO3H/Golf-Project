@@ -1,13 +1,7 @@
-import "./styles/index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-let counter = 0
-const bob = document.getElementById("bob")
-const output = document.getElementById("output")
-output.textContent = counter
+import "./styles/index.css"
+import {bob} from "./constants/dom.js"
+import Insert_Table from "./components/logic/table"
 
-
-bob.addEventListener("click", function(){
-    counter = counter + 1
-    console.log(counter)
-    output.textContent = counter
-})
+bob.textContent
+Insert_Table(bob)

@@ -1,33 +1,14 @@
-#main{
+
+
+body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;    
+    justify-content: center;    
     align-items: center;
 }
 
 #bob{
-    width: 250px;
-    height: 100px;
-    display: flex;
-    justify-content: center;    
-    align-items: center;
-    background-color: darkblue;
-    outline: black double 2px;
-    color: white;
-}
-#bob:hover{
-    scale: 101%;
-}
-#output{
-    width: 250px;
-    height: 100px;
-    display: flex;
-    justify-content: center;    
-    align-items: center;
-    background-color: black;
-    outline: darkblue double 2px;
-    color: white;
-    font-size: xx-large;
-    
+    width: 70%;
+    height: auto;
 }
