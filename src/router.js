@@ -4,15 +4,15 @@ import table from "./components/table.js"
 function renderContent(route) {
 
     const contentMap = {
-        '/': ['Bienvenido al Club de Golf'],
-        '/home': ["Welcome XD"],
-        '/games': ['Juegos de Golf'],
-        '/ranking': ['Ranking de Jugadores'],
-        '/table': [table()]
+        '/': ["Home", 'Bienvenido al Club de Golf'],
+        '/home': ["Home", "Welcome XD"],
+        '/games': ["Games",'Juegos de Golf'],
+        '/ranking': ["Ranking",'Ranking de Jugadores'],
+        '/table': ["Table view", table()]
     };
 
-    const [content] = contentMap[route] || ['Página no encontrada', ''];
-    
+    const [title, content] = contentMap[route] || ['Página no encontrada', 'Página no encontrada XD'];
+    document.title = title
     if (content instanceof HTMLElement) {
         // Si el contenido es un elemento del DOM, lo añadimos al main_section
         main_section.innerHTML = ''; // Limpiamos cualquier contenido anterior
