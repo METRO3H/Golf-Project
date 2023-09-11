@@ -18,8 +18,12 @@ function renderContent(route) {
     document.title = title
     if (content instanceof HTMLElement) {
         //El contenido es un elemento del DOM, lo añadimos al main_section
-        main_section.innerHTML = ''; // Limpiamos cualquier contenido anterior
-        main_section.append(content);
+        
+            main_section.append(content);
+            main_section.append(content);
+            main_section.append(content);
+            main_section.append(content);
+
         
     } else {
         // Si no, mostramos el contenido como HTML
