@@ -10,7 +10,7 @@ function renderContent(route) {
         '/games': ["Games",'Juegos de Golf'],
         '/ranking': ["Ranking",'Ranking de Jugadores'],
         '/table': ["Table view", table()],
-        '/wom':["WOM","XDD"]
+        '/perfil':["WOM","Perfil XD"]
     };
     
     const [title, content] = contentMap[route] || ['Página no encontrada', 'Página no encontrada XD'];
