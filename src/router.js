@@ -4,19 +4,23 @@ import table from "./components/table.js"
 function renderContent(route) {
 
     const contentMap = {
-        '/': ["Home", 'Bienvenido al Club de Golf'],
+        //Primer elemento de los objetos es el title (La wea que esta al lado del favicon), el segundo es el contenido. 
+        '/': ["Home", 'Bienvenido al Club de Golf'], //[titulo la pesa, contenido de la wea]
         '/home': ["Home", "Welcome XD"],
         '/games': ["Games",'Juegos de Golf'],
         '/ranking': ["Ranking",'Ranking de Jugadores'],
-        '/table': ["Table view", table()]
+        '/table': ["Table view", table()],
+        '/wom':["WOM","XDD"]
     };
-
+    
     const [title, content] = contentMap[route] || ['Página no encontrada', 'Página no encontrada XD'];
+    
     document.title = title
     if (content instanceof HTMLElement) {
-        // Si el contenido es un elemento del DOM, lo añadimos al main_section
+        //El contenido es un elemento del DOM, lo añadimos al main_section
         main_section.innerHTML = ''; // Limpiamos cualquier contenido anterior
-        main_section.appendChild(content);
+        main_section.append(content);
+        
     } else {
         // Si no, mostramos el contenido como HTML
         main_section.innerHTML = content;

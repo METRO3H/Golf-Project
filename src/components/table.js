@@ -7,6 +7,7 @@ export default function () {
   table_div.innerHTML = Table_HTML
 
   for (let Name of Stat_Name) {
+    
     let Stats_Length = Object.keys(Stat_Value[Name]).length;
 
     for (let i = 0; i < Stats_Length; i++) {
@@ -15,5 +16,6 @@ export default function () {
         cell.textContent = Stat_Value[Name][i] 
     }
   }
+
   return table_div
 }
