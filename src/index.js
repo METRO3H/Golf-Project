@@ -16,3 +16,4 @@ initializeRouter();
 document.querySelectorAll('a').forEach(link => {
     handleLinkClick(link);
 });
+
