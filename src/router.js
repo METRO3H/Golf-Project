@@ -8,8 +8,8 @@ function renderContent(route) {
     "/home": ["Home", "Welcome XD"],
     "/games": ["Games", "Juegos de Golf"],
     "/ranking": ["Ranking", "Ranking de Jugadores"],
-    "/table": ["Table view", table()],
-    "/perfil": ["WOM", "Perfil XD"],
+    "/table": ["Table", table()],
+    "/perfil": ["Perfil", "Perfil XD"],
   };
   const [title, content] = contentMap[route] || [
     "Página no encontrada",
