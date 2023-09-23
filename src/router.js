@@ -4,7 +4,7 @@ import table from "./components/table.js";
 function renderContent(route) {
   const contentMap = {
     //Primer elemento de los objetos es el title (La wea que esta al lado del favicon), el segundo es el contenido.
-    "/": ["Home", "Bienvenido al Club de Golf"], //[titulo la pesa, contenido de la wea]
+    "/": ["Home", "Bienvenido al Club de Golf -> LPMMM"], //[titulo en el navegador, contenido de la wea]
     "/home": ["Home", "Welcome XD"],
     "/games": ["Games", "Juegos de Golf"],
     "/ranking": ["Ranking", "Ranking de Jugadores"],

@@ -1,12 +1,13 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { Parent_Folder } from './src/constants/paths.js';
 
-module.exports = {
+const webpackConfig = {
 
     mode: 'development',
-    entry: './src/index.js',
+    entry:'./src/index.js',
     
     output:{
-        path: __dirname + '/production',
+        path: Parent_Folder + "/production",
         filename: 'bundle.js'
     },
     plugins : [
@@ -27,3 +28,4 @@ module.exports = {
         ],
       },
 }
+export default webpackConfig;
