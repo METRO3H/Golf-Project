@@ -13,8 +13,8 @@ const compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
 }));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(Parent_Folder,'production', 'index.html'));
+app.get('*', (req, response) => {
+  response.sendFile(path.join(Parent_Folder,'production', 'index.html'));
 });
 
 app.use(express.static(path.join(Parent_Folder, 'production')));

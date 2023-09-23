@@ -35,16 +35,11 @@ Sigue estos pasos para instalar y desplegar el proyecto:
    npm install
    ```
 
-3. Crear servidor local de desarrollo
-
+3. Levantar servidor de express de forma local
    ```bash
-   npm install webpack-dev-server -D
-   ```
-
-4. Ejecutar servidor local de desarrollo
-
-   ```bash
-   npx webpack-dev-server
+   //Estos 2 comandos deben ejecutarse en terminales separadas
+   npm run start:server // Levanta el servidor de express con el codigo de producción de webpack
+   npm run start:watcher // actualiza el codigo de producción cada vez que cambiamos algo en el codigo de desarrollo
    ```
 
 ## Instalar todo desde cero
