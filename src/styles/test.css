@@ -1,0 +1,14 @@
+#test-container{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+#btnFetch{
+    width: auto;
+}
+#result{
+    overflow: auto;
+    width: auto;
+    height: 400px;
+    border: 2px solid darkblue;
+}

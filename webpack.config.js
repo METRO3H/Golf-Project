@@ -8,7 +8,7 @@ const webpackConfig = {
     
     output:{
         path: Parent_Folder + "/production",
-        filename: 'bundle.js'
+        filename: 'index.js'
     },
     plugins : [
         new HtmlWebpackPlugin({
