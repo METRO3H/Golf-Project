@@ -286,8 +286,7 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:server": "nodemon src/server.js",
+    "start:server": "nodemon server/server.js",
     "start:watcher": "webpack --watch"
   },
   "type": "module",

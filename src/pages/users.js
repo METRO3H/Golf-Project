@@ -1,5 +1,6 @@
 import Test_HTML from "../views/test.html"
 import "../styles/test.css"
+
 export default function(){
 
     // Crear el contenedor y cargar el HTML
@@ -14,7 +15,7 @@ export default function(){
     // Función async para hacer la petición fetch
     async function fetchData() {
         try {
-            const response = await fetch('../get_player_data', {
+            const response = await fetch('../../request/user/all', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
