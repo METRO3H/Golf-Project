@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./styles/index.css"
 import {nav_bar_section} from "./constants/dom.js"
-import { initializeRouter, handleLinkClick } from './router.js';
+import { initializeRouter, handleLinkClick } from './router/router_handler.js';
 import Nav_Bar from "./components/nav_bar.js"
 
 
