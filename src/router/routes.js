@@ -13,7 +13,7 @@ export function getRouteMap(route){
     "/games": ["Games", "Juegos de Golf"],
     "/player": Get_Player_Page(routeParts),
     "/table": ["Table", table()],
-    "/profile": ["Profile", "Perfil XD"],
+    "/profile": ["Profile", ],
     "/test": ["Test", test_Page()],
   };
 
