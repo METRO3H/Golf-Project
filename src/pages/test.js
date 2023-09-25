@@ -15,7 +15,7 @@ export default function(){
     // Función async para hacer la petición fetch
     async function fetchData() {
         try {
-            const response = await fetch('../../request/user/all', {
+            const response = await fetch('../../request/player/all', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

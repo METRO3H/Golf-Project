@@ -1,9 +1,9 @@
 import { main_section } from "../constants/dom.js";
-import {routesMap} from "./routes.js"
+import {getRouteMap} from "./routes.js"
 
 function renderContent(route) {
-
-  const [title, content] = routesMap[route] || ["Página no encontrada", "Página no encontrada XD"];
+  
+  const [title, content] = getRouteMap(route) || ["Página no encontrada", "Página no encontrada XD"];
 
   document.title = title;
   if (content instanceof HTMLElement) {

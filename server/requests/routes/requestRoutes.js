@@ -1,9 +1,9 @@
 import express from "express"
-import userRoutes from "./userRoutes.js" 
+import playerRoutes from "./playerRoutes.js" 
 
 const router = express.Router()
 
-router.use('/user', userRoutes)
+router.use('/player', playerRoutes)
 
 
 export default router

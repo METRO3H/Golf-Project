@@ -2,7 +2,7 @@ import fs from 'fs'
 
 export function getAll(request, response){
     
-    const jsonPath = './server/data/users.json'
+    const jsonPath = './server/data/list_of_players.json'
     fs.readFile(jsonPath, 'utf8', (err, data) => {
         if (err) {
             console.error('Error al leer el archivo JSON at path: ', jsonPath ,err);
