@@ -6,5 +6,4 @@ const router = express.Router()
 router.post('/all', playerController.getAll)
 router.post('/:id', playerController.getOne)
 
-
 export default router

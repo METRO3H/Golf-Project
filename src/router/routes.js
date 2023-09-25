@@ -1,6 +1,7 @@
 
 import table from "../components/table.js";
 import test_Page from "../pages/test.js"
+import register_login from "../pages/sign.js" 
 
 import {Get_Player_Page} from "./controllers/playerController.js"
 
@@ -15,6 +16,7 @@ export function getRouteMap(route){
     "/table": ["Table", table()],
     "/profile": ["Profile", "Perfil XD"],
     "/test": ["Test", test_Page()],
+    "/sign":[ "Sign", register_login()]
   };
 
   const parentRoute = `/${routeParts[1]}`

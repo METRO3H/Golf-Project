@@ -5,6 +5,7 @@ import webpackConfig from "../webpack.config.js";
 import path from "path";
 import requestRoutes from "./requests/routes/requestRoutes.js";
 import { Parent_Folder } from "./constants/paths.js";
+import bodyParser from "body-parser"
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -15,7 +16,10 @@ app.use(
   })
 );
 
+app.use(bodyParser.json());
+
 app.use("/request", requestRoutes);
+
 
 app.get("*", (request, response) => {
   response.sendFile(path.join(Parent_Folder, "production", "index.html"));
