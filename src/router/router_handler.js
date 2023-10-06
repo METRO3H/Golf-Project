@@ -1,24 +1,9 @@
-import { main_section } from "../constants/dom.js";
-import {getRouteMap} from "./routes.js"
 
-function renderContent(route) {
-  
-  const [title, content] = getRouteMap(route) || ["Página no encontrada", "Página no encontrada XD"];
-
-  document.title = title;
-  if (content instanceof HTMLElement) {
-    //El contenido es un elemento del DOM, lo añadimos al main_section
-    main_section.innerHTML = "";
-    main_section.append(content);
-  } else {
-    // Si no, mostramos el contenido como HTML
-    main_section.innerHTML = content;
-  }
-}
+import { Render_Content } from "./render_content.js";
 
 function handleRouteChange() {
   const path = window.location.pathname; // Obtiene la ruta actual
-  renderContent(path);
+  Render_Content(path);
 }
 
 export function initializeRouter() {
@@ -38,6 +23,6 @@ export function handleLinkClick(link) {
     history.pushState(null, null, path);
 
     // Renderizar el contenido basado en la nueva ruta
-    renderContent(path);
+    Render_Content(path);
   });
 }

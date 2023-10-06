@@ -1,20 +1,26 @@
 
 import { size } from "lodash"
-import all_players from "../../pages/players.js"
-import player_profile from "../../pages/player_profile.js"
+import Get_All_Players from "../../pages/players.js"
+import Get_Player_Profile from "../../pages/player_profile.js"
 
-export function Get_Player_Page(routeParts){
+export function Get_Player_Page(url_parts){
     
-    const router_size = size(routeParts)
-    if( router_size == 2){
+    const player_request = url_parts[2]
 
-        return ["Players", all_players()]
-
-    }
-    if(router_size == 3){
-        const playerName = routeParts[2]
-        return ["Player", player_profile(playerName)]
+    if(player_request === "all"){
         
+        return {
+            title: "Players",
+            description: "Lista de todos los jugadores",
+            content: Get_All_Players(url_parts)
+          }
     }
+
+    return {
+        title: player_request,
+        description: `Perfil del Jugador ${player_request}`,
+        content: Get_Player_Profile(player_request)
+        }
+    
    
 }

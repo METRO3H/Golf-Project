@@ -1,11 +1,25 @@
 
 #players-page-container{
-    padding-top: 2%;
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 2%;
+}
+#searcher-container{
+    width: 70%;
 }
 #list-of-players-container{
-
+    width: 70%;
     border-radius: 0.375rem;
+}
+@media (max-width: 992px) {
+    #list-of-players-container {
+      width: 100%;
+    }
+    #searcher-container{
+        width: 100%;
+    }
 }
 .list-group{
     --bs-list-group-action-hover-color: black; 

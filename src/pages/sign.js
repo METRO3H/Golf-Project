@@ -1,8 +1,7 @@
 import login_register_containerHTML from "../views/login_register.html"
 import "../styles/login_register.css"
-import { log } from "neo-async"
 
-export default function () {
+export function Get_Register_Login_Page() {
 
 
     const login_register_container = document.createElement("div")

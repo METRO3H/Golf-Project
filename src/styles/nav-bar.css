@@ -1,4 +1,5 @@
 #nav-bar-logo{
+    width: 100px;
     padding-right: var(--bs-navbar-nav-link-padding-x)
 }
 
