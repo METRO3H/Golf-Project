@@ -1,28 +1,56 @@
 <div id="register-login-switch">
-  <button id="register-button-switch" type="button" >
-    Register
-  </button>
+  <div id="beautifier-button"> </div>
 
-  <button id="login-button-switch" type="button" >
-    Login
-  </button>
+  <button id="login-button-switch" class="switch-button" type="button">Iniciar sesión</button>
+  <button id="register-button-switch" class="switch-button" type="button">Crear cuenta</button>
 </div>
 
 <div class="form-container">
-  <form id="register-form">
-    <label for="name">Nombre</label>
-    <input type="text" id="name" name="name" required />
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required />
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required />
-    <button type="submit">Registrarse</button>
-  </form>
   <form id="login-form">
-    <label for="username">Email</label>
-    <input type="text" id="username" name="username" required />
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required />
-    <button type="submit" id="login-button">Login</button>
+    <img
+      id="form-title-img"
+      src="/src/assets/Golf logos/Login/Color logo - no background.svg"
+      alt="Logo"
+    />
+    <div class="input-group-form input-group-form-login">
+      <div class="input-box">
+        <input type="email" name="email" autocomplete="email" required />
+        <span>Email</span>
+      </div>
+      <div class="input-box">
+        <input type="password" name="password" required />
+        <span>Password</span>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button">Iniciar sesión</button>
+  </form>
+
+  <form id="register-form">
+    <img
+      id="form-title-img"
+      src="/src/assets/Golf logos/Register/Color logo - no background.svg"
+      alt="Logo"
+    />
+    <div class="input-group-form input-group-form-register">
+      <div class="input-box">
+        <input type="email" name="email" autocomplete="email" required />
+        <span>Email</span>
+      </div>
+      <div class="input-box">
+        <input type="text" name="username" autocomplete="username" required />
+        <span>Nombre de usuario</span>
+      </div>
+      <div class="input-box">
+        <input type="password" name="password" required />
+        <span>Contraseña</span>
+      </div>
+      <div class="input-box">
+        <input type="password" name="password" required />
+        <span>Repite la Contraseña</span>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button">Crear cuenta</button>
   </form>
 </div>

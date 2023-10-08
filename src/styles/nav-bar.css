@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Argent CF Extra Bold';
+    src: url('/src/assets/fonts/ArgentCF-Regular.woff2') format('woff2'),
+         url('/src/assets/fonts/ArgentCF-Regular.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+  }
+.navbar{
+    font-family: 'Argent CF Extra Bold', sans-serif;
+}
 #nav-bar-logo{
     width: 100px;
     padding-right: var(--bs-navbar-nav-link-padding-x)
@@ -5,5 +15,4 @@
 
 .container-fluid{
     margin-right: 50px;
-
 }

@@ -11,10 +11,32 @@ export function Get_Register_Login_Page() {
     const login_form = login_register_container.querySelector("#login-form")
     loginSubmit(login_form)
 
+    handleSwitch(login_register_container)
+
     const register_form = login_register_container.querySelector("#register-form")
     registerSubmit(register_form)
 
     return login_register_container
+
+}
+
+function handleSwitch(login_register_container){
+    const register_switch = login_register_container.querySelector("#register-button-switch")
+    const login_switch = login_register_container.querySelector("#login-button-switch") 
+    const beautifier_button = login_register_container.querySelector("#beautifier-button")
+    const form_container = login_register_container.querySelector(".form-container")
+  
+
+    register_switch.addEventListener("click", function(){
+        form_container.style.transform = "translateX(-50%)"
+        beautifier_button.style.transform = "translateX(100%)"
+    })
+
+    login_switch.addEventListener("click", function(){
+        form_container.style.transform = "translateX(0%)"
+        beautifier_button.style.transform = "translateX(0%)"
+    })
+
 
 }
 
