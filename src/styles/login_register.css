@@ -27,7 +27,6 @@
   height: calc(100% - 64px);
   width: 900px;
   flex-grow: 1;
-  border: 3px solid var(--main_color);
   transition: all 500ms ease;
 }
 .general-form{
