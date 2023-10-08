@@ -7,6 +7,7 @@
   }
 .navbar{
     font-family: 'Argent CF Extra Bold', sans-serif;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(27,25,25,1) 35%, rgba(27,25,25,1) 65%, rgba(0,0,0,1) 100%);
 }
 #nav-bar-logo{
     width: 100px;

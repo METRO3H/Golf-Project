@@ -69,6 +69,7 @@
 
 .input-box{
   position: relative;
+  display: inline-block;
   width: 75%;
   height: 40px;
 }
@@ -76,10 +77,10 @@
   position: absolute;
   width: 100%;
   height: 100%;
-
-  padding: 15px 11px 11px 11px;
   border: none;
   outline: 3px solid #2b3035;
+  
+  padding: 15px 11px 11px 11px;
   border-radius: 5px;
   color: #2b3035;
   font-size: 1em;
@@ -104,7 +105,8 @@
   font-size: 0.85em;
   border-radius: 5px;
   pointer-events: none;
-  color: white;
+  color: black;
+  transition: transform 200ms ease;
 }
 
 .input-box > input:focus ~ span{
@@ -115,16 +117,16 @@
   font-weight: 400;
   color: black;
 }
-.input-box > input ~ span:not(.input-box > input:focus ~ span){
+.input-box > input:valid ~ span:not(.input-box > input:focus ~ span){
   transform: translate(0,-31px);
   padding: 0px 4px; 
   font-size: 0.85em;
   outline-color: black;
   background-color: black;
-
+  color: white;
 }
 
-.input-box > input:hover ~ span:not(.input-box > input:focus ~ span){
+.input-box > input:valid:hover ~ span:not(.input-box > input:focus ~ span){
   background: var(--main_color_gradient);
   outline-color: var(--main_color);
   color: black;
@@ -162,7 +164,7 @@
   width: 320px;
   margin-top: 20px;
   position: relative;
-  box-shadow: 0 0 20px 9px #ff61241f;
+  box-shadow: 0 0 11px -2px var(--main_color);
   border-radius: 30px;
 }
 #beautifier-button{
