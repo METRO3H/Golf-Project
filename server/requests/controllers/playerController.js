@@ -17,5 +17,6 @@ export function getAll(request, response){
 }
 
 export function getOne(request, response){
+    
     console.log("Codigo para obtener solo un usuario")
 }
