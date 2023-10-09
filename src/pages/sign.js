@@ -2,8 +2,6 @@ import login_register_containerHTML from "../views/login_register.html"
 import "../styles/login_register.css"
 
 export function Get_Register_Login_Page() {
-
-
     const login_register_container = document.createElement("div")
     login_register_container.id = "register-login-container"
     login_register_container.innerHTML = login_register_containerHTML
@@ -28,7 +26,6 @@ function registerSubmit(register_form){
             username: register_form["username"].value,
             password: register_form["password"].value
         }
-
         registerRequest(user_data)
 
         })
@@ -54,6 +51,7 @@ async function registerRequest(user_data){
         console.error('Error al obtener la información:', error);
     }
 }
+
 function loginSubmit(form){
     form.addEventListener("submit", (event) => {
         event.preventDefault()
@@ -90,6 +88,29 @@ async function loginRequest(username, password){
     }
 
 }
+
+async function checkUserExists(username){
+    const data = {
+        username: username
+    }
+    try {
+        const response = await fetch('../../request/checkUserExists', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const loginResponse = await response.json();
+        console.log(loginResponse)
+        
+        return loginResponse
+    } catch (error) {
+        console.error('Error al obtener la información:', error);
+    }
+}
+
 
 function handleSwitch(login_register_container){
     const register_switch = login_register_container.querySelector("#register-button-switch")
