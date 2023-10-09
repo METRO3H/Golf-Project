@@ -13,7 +13,9 @@ CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT,
   username TEXT,
-  password TEXT
+  password TEXT,
+  description TEXT,
+  handicap TEXT
 );
 
 `

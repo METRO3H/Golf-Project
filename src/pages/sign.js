@@ -1,5 +1,6 @@
 import login_register_containerHTML from "../views/login_register.html"
 import "../styles/login_register.css"
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
 
 export function Get_Register_Login_Page() {
     const login_register_container = document.createElement("div")
@@ -12,10 +13,12 @@ export function Get_Register_Login_Page() {
     handleSwitch(login_register_container)
 
     const register_form = login_register_container.querySelector("#register-form")
+
     registerSubmit(register_form)
 
-    return login_register_container
+    Show_Toast(login_register_container)
 
+    return login_register_container
 }
 function registerSubmit(register_form){
     register_form.addEventListener("submit", (event) => {
@@ -113,6 +116,7 @@ async function checkUserExists(username){
 
 
 function handleSwitch(login_register_container){
+
     const register_switch = login_register_container.querySelector("#register-button-switch")
     const login_switch = login_register_container.querySelector("#login-button-switch") 
     const beautifier_button = login_register_container.querySelector("#beautifier-button")
@@ -130,4 +134,16 @@ function handleSwitch(login_register_container){
     })
 
 
+}
+
+function Show_Toast(login_register_container){
+    const RegisterSubmitButton = login_register_container.querySelector('#submit-register-button')
+    const ToastNotification = login_register_container.querySelector('#liveToast')
+
+    if (RegisterSubmitButton) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotification)
+    RegisterSubmitButton.addEventListener('click', () => {
+        toastBootstrap.show()
+        })
+    }   
 }

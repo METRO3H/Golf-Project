@@ -2,7 +2,7 @@ import fs from 'fs'
 
 export function getAll(request, response){
     
-    const jsonPath = './server/data/list_of_players.json'
+    const jsonPath = './server/database/list_of_players.json'
     fs.readFile(jsonPath, 'utf8', (err, data) => {
         if (err) {
             console.error('Error al leer el archivo JSON at path: ', jsonPath ,err);
@@ -17,5 +17,6 @@ export function getAll(request, response){
 }
 
 export function getOne(request, response){
+    
     console.log("Codigo para obtener solo un usuario")
 }

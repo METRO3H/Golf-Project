@@ -2,6 +2,7 @@ import sqlite3 from "sqlite3";
 import { database_path } from "../../constants/paths.js";
 
 export async function Register_User(request, response) {
+
   console.log(request.body);
   const user_data = request.body;
 
@@ -12,8 +13,9 @@ export async function Register_User(request, response) {
   }
 
   const response_message = JSON.stringify(await Insert_User(user_data))
-  
+
   response.send(response_message)
+
 }
 
 async function Insert_User(user_data) {
@@ -59,11 +61,13 @@ async function Insert_User(user_data) {
 }
 
 function Get_Insert_User_Query(user_data) {
+
+  const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis perspiciatis eligendi delectus suscipit a dignissimos optio aspernatur voluptatibus! At commodi, nobis est optio beatae ipsa saepe eum ullam vero reiciendis?"
+  const handicap = Math.floor(Math.random() * 40);
   //Tremenda sql injection nos pueden pegar con esto XD
   const query = `--sql
-
-  INSERT INTO users (email, username, password) 
-  VALUES ('${user_data.email}', '${user_data.username}','${user_data.password}')
+  INSERT INTO users (email, username, password, description, handicap) 
+  VALUES ('${user_data.email}', '${user_data.username}','${user_data.password}', '${description}', '${handicap}')
   `;
   return query;
 }
