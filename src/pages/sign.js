@@ -1,5 +1,6 @@
 import login_register_containerHTML from "../views/login_register.html"
 import "../styles/login_register.css"
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
 
 export function Get_Register_Login_Page() {
 
@@ -29,9 +30,18 @@ function registerSubmit(register_form){
             password: register_form["password"].value
         }
 
-        registerRequest(user_data)
+        const registerResponse = registerRequest(user_data)
+        
+        const RegisterSubmitButton = register_form.querySelector('#submit-register-button')
+        const ToastNotification = register_form.querySelector('#liveToast')
 
-        })
+        if (RegisterSubmitButton) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotification)
+        RegisterSubmitButton.addEventListener('click', () => {
+            toastBootstrap.show()
+            })
+        }        
+    })
 }
 async function registerRequest(user_data){
 
