@@ -3,8 +3,6 @@ import "../styles/login_register.css"
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
 
 export function Get_Register_Login_Page() {
-
-
     const login_register_container = document.createElement("div")
     login_register_container.id = "register-login-container"
     login_register_container.innerHTML = login_register_containerHTML
@@ -31,10 +29,9 @@ function registerSubmit(register_form){
             username: register_form["username"].value,
             password: register_form["password"].value
         }
+        registerRequest(user_data)
 
-        const registerResponse = registerRequest(user_data)
-             
-    })
+        })
 }
 async function registerRequest(user_data){
 
@@ -57,30 +54,27 @@ async function registerRequest(user_data){
         console.error('Error al obtener la información:', error);
     }
 }
-function loginSubmit(form){
-    form.addEventListener("submit", (event) => {
+
+function loginSubmit(login_form){
+    login_form.addEventListener("submit", (event) => {
         event.preventDefault()
-        const username = form["username"].value
-        const password = form["password"].value
-
-        loginRequest(username, password)
-
+        const user_data = {
+            email: login_form["email"].value,
+            password: login_form["password"].value
+        }
+        loginRequest(user_data)
         })
 }
 
-async function loginRequest(username, password){
-    const data = {
-        username: username,
-        password: password
-    }
-    console.log(data)
+async function loginRequest(user_data){
+    console.log(user_data)
     try {
         const response = await fetch('../../request/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(user_data)
         });
 
         const loginResponse = await response.json();
