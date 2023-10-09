@@ -19,27 +19,41 @@ export function Get_Register_Login_Page() {
     return login_register_container
 
 }
+function registerSubmit(register_form){
+    register_form.addEventListener("submit", (event) => {
+        event.preventDefault()
 
-function handleSwitch(login_register_container){
-    const register_switch = login_register_container.querySelector("#register-button-switch")
-    const login_switch = login_register_container.querySelector("#login-button-switch") 
-    const beautifier_button = login_register_container.querySelector("#beautifier-button")
-    const form_container = login_register_container.querySelector(".form-container")
-  
+        const user_data = {
+            email: register_form["email"].value,
+            username: register_form["username"].value,
+            password: register_form["password"].value
+        }
 
-    register_switch.addEventListener("click", function(){
-        form_container.style.transform = "translateX(-50%)"
-        beautifier_button.style.transform = "translateX(100%)"
-    })
+        registerRequest(user_data)
 
-    login_switch.addEventListener("click", function(){
-        form_container.style.transform = "translateX(0%)"
-        beautifier_button.style.transform = "translateX(0%)"
-    })
-
-
+        })
 }
+async function registerRequest(user_data){
 
+    try {
+        const response = await fetch('../../request/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user_data)
+        });
+
+        const registerResponse = JSON.stringify(await response.json());
+
+        console.log(registerResponse)
+
+        return registerResponse
+
+    } catch (error) {
+        console.error('Error al obtener la información:', error);
+    }
+}
 function loginSubmit(form){
     form.addEventListener("submit", (event) => {
         event.preventDefault()
@@ -47,18 +61,6 @@ function loginSubmit(form){
         const password = form["password"].value
 
         loginRequest(username, password)
-
-        })
-}
-
-function registerSubmit(form){
-    form.addEventListener("submit", (event) => {
-        event.preventDefault()
-        const name = form["name"].value
-        const email = form["email"].value
-        const password = form["password"].value
-
-        registerRequest(name, email, password)
 
         })
 }
@@ -89,28 +91,22 @@ async function loginRequest(username, password){
 
 }
 
-async function registerRequest(name, email, password){
-    const data = {
-        name: name,
-        email: email,
-        password: password
-    }
-    console.log(data)
-    try {
-        const response = await fetch('../../request/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+function handleSwitch(login_register_container){
+    const register_switch = login_register_container.querySelector("#register-button-switch")
+    const login_switch = login_register_container.querySelector("#login-button-switch") 
+    const beautifier_button = login_register_container.querySelector("#beautifier-button")
+    const form_container = login_register_container.querySelector(".form-container")
+  
 
-        const registerResponse = await response.json();
-        console.log(registerResponse)
+    register_switch.addEventListener("click", function(){
+        form_container.style.transform = "translateX(-50%)"
+        beautifier_button.style.transform = "translateX(100%)"
+    })
 
-        return registerResponse
+    login_switch.addEventListener("click", function(){
+        form_container.style.transform = "translateX(0%)"
+        beautifier_button.style.transform = "translateX(0%)"
+    })
 
-    } catch (error) {
-        console.error('Error al obtener la información:', error);
-    }
+
 }

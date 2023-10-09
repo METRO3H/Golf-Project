@@ -1,35 +1,75 @@
-import fs from 'fs'
+import sqlite3 from "sqlite3";
+import { database_path } from "../../constants/paths.js";
 
-export function register(request, response){
+export async function Register_User(request, response) {
+  console.log(request.body);
+  const user_data = request.body;
 
-    const { name, email, password } = request.body
-    const jsonPath = './server/data/user_credentials.json'
-    userCredentialAdd(name, email, password, jsonPath)
+  if (verify_data(user_data) === false) {
+    response = "Invalid input data.";
+    console.log(response);
+    return response;
+  }
+
+  const response_message = JSON.stringify(await Insert_User(user_data))
+  
+  response.send(response_message)
 }
 
-function userCredentialAdd(name, email, password, jsonPath) {
-    const user = {
-      username: name,
-      email: email,
-      password: password
-    };
-  
-    fs.readFile(jsonPath, 'utf8', (err, data) => {
-      if (err) {
-        console.error(err);
-        return;
+async function Insert_User(user_data) {
+
+  const errors = 0
+  const insert_user_query = Get_Insert_User_Query(user_data);
+
+  const db = new sqlite3.Database(database_path, (error) => {
+
+    if(error){
+      console.log("Error: Failed to add user to the database.")
+      errors++
+    }
+
+  });
+
+    if(errors !== 0){
+      db.close((error) => handle_sql_error(error, db_error.close_database));
+      return "¡Error al crear el usuario en el servidor!"
+    } 
+
+    db.run(insert_user_query, (error) => {
+
+      if(error){
+        console.log("Error: Failed to add user to the database.")
+        errors++
+        return
       }
+
+      console.log("User added successfully!")
   
-      const users = JSON.parse(data);
-      users.push(user);
-  
-      fs.writeFile(jsonPath, JSON.stringify(users), (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-  
-        console.log('User added successfully!');
-      });
-    });
-  }
+    
+  });
+
+  if(errors !== 0){
+    db.close((error) => handle_sql_error(error, db_error.close_database));
+    return "¡Error al crear el usuario en el servidor!"
+  } 
+
+
+  return "¡Usuario creado exitosamente!"
+
+}
+
+function Get_Insert_User_Query(user_data) {
+  //Tremenda sql injection nos pueden pegar con esto XD
+  const query = `--sql
+
+  INSERT INTO users (email, username, password) 
+  VALUES ('${user_data.email}', '${user_data.username}','${user_data.password}')
+  `;
+  return query;
+}
+
+function verify_data(user_data) {
+  /* Logica para verificar datos*/
+
+  return true;
+}
