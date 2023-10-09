@@ -15,7 +15,10 @@ export function Get_Register_Login_Page() {
     handleSwitch(login_register_container)
 
     const register_form = login_register_container.querySelector("#register-form")
+    
     registerSubmit(register_form)
+
+    Show_Toast(register_form)
 
     return login_register_container
 
@@ -31,16 +34,7 @@ function registerSubmit(register_form){
         }
 
         const registerResponse = registerRequest(user_data)
-        
-        const RegisterSubmitButton = register_form.querySelector('#submit-register-button')
-        const ToastNotification = register_form.querySelector('#liveToast')
-
-        if (RegisterSubmitButton) {
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotification)
-        RegisterSubmitButton.addEventListener('click', () => {
-            toastBootstrap.show()
-            })
-        }        
+             
     })
 }
 async function registerRequest(user_data){
@@ -102,6 +96,7 @@ async function loginRequest(username, password){
 }
 
 function handleSwitch(login_register_container){
+
     const register_switch = login_register_container.querySelector("#register-button-switch")
     const login_switch = login_register_container.querySelector("#login-button-switch") 
     const beautifier_button = login_register_container.querySelector("#beautifier-button")
@@ -119,4 +114,16 @@ function handleSwitch(login_register_container){
     })
 
 
+}
+
+function Show_Toast(register_form){
+    const RegisterSubmitButton = register_form.querySelector('#submit-register-button')
+    const ToastNotification = register_form.querySelector('#liveToast')
+
+    if (RegisterSubmitButton) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotification)
+    RegisterSubmitButton.addEventListener('click', () => {
+        toastBootstrap.show()
+        })
+    }   
 }
