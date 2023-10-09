@@ -55,30 +55,26 @@ async function registerRequest(user_data){
     }
 }
 
-function loginSubmit(form){
-    form.addEventListener("submit", (event) => {
+function loginSubmit(login_form){
+    login_form.addEventListener("submit", (event) => {
         event.preventDefault()
-        const username = form["username"].value
-        const password = form["password"].value
-
-        loginRequest(username, password)
-
+        const user_data = {
+            email: login_form["email"].value,
+            password: login_form["password"].value
+        }
+        loginRequest(user_data)
         })
 }
 
-async function loginRequest(username, password){
-    const data = {
-        username: username,
-        password: password
-    }
-    console.log(data)
+async function loginRequest(user_data){
+    console.log(user_data)
     try {
         const response = await fetch('../../request/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(user_data)
         });
 
         const loginResponse = await response.json();
@@ -91,29 +87,6 @@ async function loginRequest(username, password){
     }
 
 }
-
-async function checkUserExists(username){
-    const data = {
-        username: username
-    }
-    try {
-        const response = await fetch('../../request/checkUserExists', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        const loginResponse = await response.json();
-        console.log(loginResponse)
-        
-        return loginResponse
-    } catch (error) {
-        console.error('Error al obtener la información:', error);
-    }
-}
-
 
 function handleSwitch(login_register_container){
 
