@@ -18,7 +18,6 @@ export default function(){
     Insert_Players_To(list_of_players_group)
 
     return players_page_container
-
 }
 
 async function Insert_Players_To(list_of_players_group){
