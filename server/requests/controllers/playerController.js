@@ -1,20 +1,32 @@
-import fs from 'fs'
+import sqlite3 from "sqlite3";
+import { database_path } from "../../constants/paths.js";
 
 export function getAll(request, response){
-    
-    const jsonPath = './server/database/list_of_players.json'
-    fs.readFile(jsonPath, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error al leer el archivo JSON at path: ', jsonPath ,err);
-            response.status(500).send('Error interno del servidor');
-            return;
-        }
-        
-        // Parsea el contenido del archivo a un objeto JSON
-        const jsonData = JSON.parse(data);
-        response.json(jsonData);
-      })
-}
+    var errors = 0;
+    const get_all_users_query = `--sql
+      SELECT username, description, handicap  FROM users;
+    `;
+  
+    const db = new sqlite3.Database(database_path, (error) => {
+      if(error){
+        console.log('Error: al acceder a la base de datos.')
+        errors++
+      }
+    });
+  
+    db.all(get_all_users_query, (error, rows) => {
+      if(error){
+        console.log("Error: failed to get users from the database.")
+        errors++
+        response.send("Error: failed to get users from the database.")
+      } else {
+        const users = JSON.stringify(rows);
+        console.log(users);
+        response.send(users);
+      }
+    });
+  }
+  
 
 export function getOne(request, response){
 
@@ -39,7 +51,7 @@ function get_user_data(user_data){
     });
     
     const user = db.run(get_user_query, (error) => {
-        
+        var errors = 0;
         if(error){
           console.log("Error: failed to get user from the database.")
           errors++

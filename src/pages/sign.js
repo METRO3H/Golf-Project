@@ -18,6 +18,8 @@ export function Get_Register_Login_Page() {
 
     Show_Toast(login_register_container)
 
+    Show_LoginToast(login_register_container)
+
     return login_register_container
 }
 function registerSubmit(register_form){
@@ -116,6 +118,18 @@ function Show_Toast(login_register_container){
     if (RegisterSubmitButton) {
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotification)
     RegisterSubmitButton.addEventListener('click', () => {
+        toastBootstrap.show()
+        })
+    }   
+}
+
+function Show_LoginToast(login_register_container){
+    const LoginSubmitButton = login_register_container.querySelector('#SubmitLoginButton')
+    const ToastNotificationL = login_register_container.querySelector('#Logintoast')
+
+    if (LoginSubmitButton) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotificationL)
+    LoginSubmitButton.addEventListener('click', () => {
         toastBootstrap.show()
         })
     }   
