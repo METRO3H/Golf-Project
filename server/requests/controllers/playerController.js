@@ -51,7 +51,7 @@ function get_user_data(user_data){
     });
     
     const user = db.run(get_user_query, (error) => {
-        
+        var errors = 0;
         if(error){
           console.log("Error: failed to get user from the database.")
           errors++
