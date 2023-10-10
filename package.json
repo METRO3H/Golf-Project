@@ -210,6 +210,7 @@
     "postcss-value-parser": "^4.2.0",
     "pretty-error": "^4.0.0",
     "process-nextick-args": "^2.0.1",
+    "promise": "^8.3.0",
     "proxy-addr": "^2.0.7",
     "punycode": "^2.3.0",
     "qs": "^6.11.0",

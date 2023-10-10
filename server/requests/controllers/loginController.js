@@ -1,20 +1,26 @@
 import sqlite3 from "sqlite3";
 import { database_path } from "../../constants/paths.js";
-
-export function login(request, response) {
+import promise from "promise"
+export async function login(request, response) {
   const user_data = request.body;
 
-  if(verify_data(user_data) === true){
-    response.send(JSON.stringify("¡Usuario valido!"));
-  }
-  else {
-    response.send(JSON.stringify("¡Usuario Invalido!"));
+  const db_response = await verify_data(user_data);
+  var message = ""
+  if (db_response === false) {
+    message = JSON.stringify("¡Error en el servidor!")
+  } else {
+
+    if(Object.keys(db_response).length === 0){
+      message = JSON.stringify(" No existe ese usuario mi pana ")
+    }else{
+      message = db_response
+    }
   }
 
-  
+  response.send(message)
 }
 
-function verify_data(user_data) {
+async function verify_data(user_data) {
   var errors = 0;
   const Select_User_Query = Get_Select_User_Query(user_data);
 
@@ -33,35 +39,24 @@ function verify_data(user_data) {
     return false;
   }
 
-  const user = db.run(Select_User_Query, (error) => {
-    if (error) {
-      console.log("Error: failed to get user from the database.");
-      errors++;
-    }
-  });
-
-  if (errors !== 0) {
-    db.close((error) => {
+  return new promise((resolve, reject) => {
+    db.all(Select_User_Query, (error, row) => {
       if (error) {
-        console.error("Error: al cerrar la base de datos. ->", error);
+        console.log("Error: Usuario no registrado");
+      }else{
+        console.log(row)
+        resolve(row);
+        db.close();
       }
+
     });
-
-    return false;
-  }
-
-  console.log(user);
-
-  db.close((error) => {
-    console.error("Error: al cerrar la base de datos. ->", error);
   });
-  
-  return true
 }
 
 function Get_Select_User_Query(user_data) {
   const query = `--sql
-    SELECT * users WHERE email = ${user_data.email} AND password = ${user_data.password};
+    SELECT * FROM users WHERE email = '${user_data.email}' AND password = '${user_data.password}';
     `;
+    console.log(query)
   return query;
 }
