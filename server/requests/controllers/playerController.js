@@ -2,6 +2,7 @@ import sqlite3 from "sqlite3";
 import { database_path } from "../../constants/paths.js";
 
 export function getAll(request, response){
+    var errors = 0;
     const get_all_users_query = `--sql
       SELECT username, description, handicap  FROM users;
     `;
