@@ -47,6 +47,7 @@ async function Insert_Players_To(list_of_players_group){
 }
 
 async function Get_Players() {
+    
     try {
         const response = await fetch('../../request/player/all', {
             method: 'POST',

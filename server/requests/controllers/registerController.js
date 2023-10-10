@@ -20,7 +20,7 @@ export async function Register_User(request, response) {
 
 async function Insert_User(user_data) {
 
-  const errors = 0
+  var errors = 0
   const insert_user_query = Get_Insert_User_Query(user_data);
 
   const db = new sqlite3.Database(database_path, (error) => {

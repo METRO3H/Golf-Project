@@ -30,16 +30,11 @@ export function getAll(request, response){
 
 export function getOne(request, response){
 
-    const user_id = request.body
-    const user_data = get_user_data(user_id)
-    console.log("Codigo para obtener solo un usuario")
-    response.send(user_data)
-}
-
-function get_user_data(user_data){
-
+    const user_id = request.body.user_id
+    console.log(user_id)
+    var errors = 0;
     const get_user_query = `--sql
-    SELECT * users WHERE id = ${user_data.id};
+    SELECT email, username, description, handicap from users WHERE id = ${user_id};
     `
 
     const db = new sqlite3.Database(database_path, (error) => {
@@ -50,16 +45,20 @@ function get_user_data(user_data){
         }
     });
     
-    const user = db.run(get_user_query, (error) => {
-        var errors = 0;
-        if(error){
-          console.log("Error: failed to get user from the database.")
-          errors++
-          return "Error: failed to get user from the database."
-        } 
-    });
+    db.all(get_user_query, (error, rows) => {
 
-    const JSON_user = JSON.stringify(user)
-    console.log(JSON_user)    
-    return JSON_user
+        if(error){
+          console.log("Error: failed to get users from the database.")
+          errors++
+          response.send("Error: failed to get users from the database.")
+        } else {
+
+          const user_data = JSON.stringify(rows);
+          console.log(user_data);
+          response.send(user_data);
+        }
+      });
+
+
+
 }
