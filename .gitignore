@@ -26,3 +26,7 @@ dist-ssr
 *.sln
 *.db
 *.sw?
+
+# Ignore database file
+server/database/golf_data_base.db
+golf_data_base.db
