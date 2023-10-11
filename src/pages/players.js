@@ -33,11 +33,12 @@ async function Insert_Players_To(list_of_players_group){
     for (let i = 0; i < size(players); i++) {
 
         const item = player_item_element.cloneNode(true)
-        const playerName = players[i]["username"]
-        
-        item.setAttribute("href",`/player/${playerName.replace(/\s/g, '_')}`)
+        const player_name = players[i]["username"]
+        const formatted_player_name = player_name.replace(/\s/g, '_')
+
+        item.setAttribute("href",`/player/${formatted_player_name}`)
         item.querySelector("#user-icon-svg").style.fill = user_icon_colors[i] 
-        item.querySelector("#item-title").textContent = playerName
+        item.querySelector("#item-title").textContent = player_name
         item.querySelector("#item-description").textContent = players[i]["description"]
         item.querySelector("#item-ranking").textContent = `#${players[i]["handicap"]}`
         list_of_players_group.append(item)
