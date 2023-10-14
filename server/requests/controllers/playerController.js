@@ -30,11 +30,12 @@ export function getAll(request, response){
 
 export function getOne(request, response){
 
-    const user_id = request.body.user_id
-    console.log(user_id)
+    const player_name = request.params.player_name.replace(/_/g, ' ');
+    console.log(player_name)
     var errors = 0;
+
     const get_user_query = `--sql
-    SELECT email, username, description, handicap from users WHERE id = ${user_id};
+    SELECT email, username, description, handicap from users WHERE username = '${player_name}';
     `
 
     const db = new sqlite3.Database(database_path, (error) => {
@@ -45,7 +46,7 @@ export function getOne(request, response){
         }
     });
     
-    db.all(get_user_query, (error, rows) => {
+    db.get(get_user_query, (error, rows) => {
 
         if(error){
           console.log("Error: failed to get users from the database.")
@@ -53,9 +54,9 @@ export function getOne(request, response){
           response.send("Error: failed to get users from the database.")
         } else {
 
-          const user_data = JSON.stringify(rows);
-          console.log(user_data);
-          response.send(user_data);
+          const player_data = JSON.stringify(rows);
+          console.log(player_data);
+          response.send(player_data);
         }
       });
 

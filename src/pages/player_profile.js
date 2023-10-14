@@ -1,49 +1,43 @@
 import perfil_html from "../views/profiles.html"
 import "../styles/perfil.css"
 
-export default function(playerName){
+export default function(player_name){
 
     const player_profile_page_container = document.createElement("div")
     player_profile_page_container.id = "perfil_container"
     player_profile_page_container.innerHTML = perfil_html
     
-    Insert_Profile_Data_To(player_profile_page_container)
+    Insert_Profile_Data_To(player_profile_page_container, player_name)
 
     return player_profile_page_container
 }
 
-async function Insert_Profile_Data_To(player_profile_page_container){
+async function Insert_Profile_Data_To(player_profile_page_container, player_name){
 
     const username = player_profile_page_container.querySelector("#username-item")
     const email = player_profile_page_container.querySelector("#email-item")
     const description = player_profile_page_container.querySelector("#description-item")
     const handicap = player_profile_page_container.querySelector("#handicap-item")
-    const user_id = username.dataset.info;
 
-    const user_data = await getUserData(user_id)
+    const player_data = await getUserData(player_name)
     
-    console.log(user_data)
+    console.log(player_data)
 
-    username.textContent = user_data.username
-    email.textContent = user_data.email
-    description.textContent = user_data.description
-    handicap.textContent = user_data.handicap
+    username.textContent = player_data.username
+    email.textContent = player_data.email
+    description.textContent = player_data.description
+    handicap.textContent = player_data.handicap
 
 }
 
-async function getUserData(user_id){
+async function getUserData(player_name){
 
     try {
-        const response = await fetch(`../../request/player/${user_id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({user_id})
-        });
-         var user_data = await response.json()
+        const response = await fetch(`../../request/player/${player_name}`);
 
-        return user_data[0]
+        const player_data = await response.json()
+
+        return player_data
 
     } catch (error) {
         console.error('Error al obtener la información:', error);
