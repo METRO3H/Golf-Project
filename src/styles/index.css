@@ -24,3 +24,33 @@ body{
 #nav-bar{
     flex-grow: 0;
 }
+
+
+@keyframes loading-bar-animation{
+
+    from{
+        width: 0%;
+
+    }
+    to{
+        width: 100%;
+
+    }
+}
+
+.loading-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5px; /* Ajusta la altura según tus preferencias */
+    background: var(--main_color_gradient); /* Cambia el color de fondo según tus preferencias */
+    z-index: 1031; /* Asegúrate de que esté por encima de otros elementos */
+    display: block; /* Oculta la barra de carga inicialmente */
+}
+
+.loading-bar-animation-class{
+    animation:  loading-bar-animation 1000ms ;
+    animation-name: loading-bar-animation;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+}
