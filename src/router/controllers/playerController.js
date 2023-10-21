@@ -5,7 +5,6 @@ import Get_Player_Profile from "../../pages/player_profile.js"
 export function Get_Player_Page(url_parts){
     
     const player_request = url_parts[2]
-    console.log(player_request)
     if(player_request === "all"){
         
         return {

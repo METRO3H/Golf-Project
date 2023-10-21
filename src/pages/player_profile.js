@@ -33,11 +33,13 @@ async function Insert_Profile_Data_To(player_profile_page_container, player_name
 async function getUserData(player_name){
 
     try {
-        const response = await fetch(`../../request/player/${player_name}`);
+        const request = await fetch(`../../request/player/${player_name}`);
 
-        const player_data = await response.json()
+        const response = await request.json()
 
-        return player_data
+        console.log(response.message)
+
+        return response.data
 
     } catch (error) {
         console.error('Error al obtener la información:', error);

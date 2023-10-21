@@ -1,64 +1,80 @@
 import sqlite3 from "sqlite3";
 import { database_path } from "../../constants/paths.js";
 
-export function getAll(request, response){
-    var errors = 0;
-    const get_all_users_query = `--sql
-      SELECT username, description, handicap  FROM users;
-    `;
+export function getAll(request, response) {
+  const db = new sqlite3.Database(database_path, (error) => {
+    if (error) {
+      console.error("Error al abrir la base de datos. ->", error);
+     return response.status(500).send({message: "Error en el servidor"});
+    }
+
+    db.serialize(() => {
+      const get_all_users_query = `--sql
+        SELECT username, description, handicap FROM users;
+        `;
   
-    const db = new sqlite3.Database(database_path, (error) => {
-      if(error){
-        console.log('Error: al acceder a la base de datos.')
-        errors++
-      }
-    });
-  
-    db.all(get_all_users_query, (error, rows) => {
-      if(error){
-        console.log("Error: failed to get users from the database.")
-        errors++
-        response.send("Error: failed to get users from the database.")
-      } else {
-        const users = JSON.stringify(rows);
-        console.log(users);
-        response.send(users);
-      }
-    });
-  }
-  
-
-export function getOne(request, response){
-
-    const player_name = request.params.player_name.replace(/_/g, ' ');
-    console.log(player_name)
-    var errors = 0;
-
-    const get_user_query = `--sql
-    SELECT email, username, description, handicap from users WHERE username = '${player_name}';
-    `
-
-    const db = new sqlite3.Database(database_path, (error) => {
+      db.all(get_all_users_query, (error, user_rows) => {
+        if(error){
+          console.error("Error: failed to get users from the database.")
+          return response.status(500).send({message: "Error en el servidor"});
+        }
+        const number_of_rows = user_rows.length
+        if(number_of_rows === 0){
+          console.log("Users not found")
+         return response.status(401).send({message: "No hay usuarios disponibles"});
+        }
         
-        if(error){
-          console.log('Error: al acceder a la base de datos.')
-          errors++
-        }
-    });
-    
-    db.get(get_user_query, (error, rows) => {
-
-        if(error){
-          console.log("Error: failed to get users from the database.")
-          errors++
-          response.send("Error: failed to get users from the database.")
-        } else {
-
-          const player_data = JSON.stringify(rows);
-          console.log(player_data);
-          response.send(player_data);
-        }
+        response.status(200).send(
+          {
+          message: `Se encontraron ${number_of_rows} usuarios`,
+          data: user_rows
+          }
+      );
       });
+  
+      db.close()
+    });
+
+  });
+
+}
+
+export function getOne(request, response) {
+  const player_name = request.params.player_name.replace(/_/g, " ");
+
+  const db = new sqlite3.Database(database_path, (error) => {
+    if (error) {
+      console.error("Error al abrir la base de datos. ->", error);
+     return response.status(500).send({ message: "Error en el servidor" });
+    }
+
+    db.serialize(() => {
+      const get_user_query = `--sql
+        SELECT email, username, description, handicap from users WHERE username = ?
+        `;
+  
+      db.get(get_user_query, [player_name], (error, user_row) => {
+        if (error) {
+          console.error("Error: failed to get users from the database.");
+        return response.status(500).send({ message: "Error en el servidor" });
+        }
+        if (user_row == null) {
+          console.log("User not found");
+        return response.status(401).send({ message: "Usuario no válido" });
+        }
+  
+        response.status(200).send({
+          message: "Usuario correcto",
+          data: user_row,
+        });
+  
+      });
+  
+      db.close()
+    });
+
+  });
+
 
 
 

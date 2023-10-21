@@ -28,6 +28,7 @@ async function Insert_Players_To(list_of_players_group){
     player_item_template.remove()
 
     const players = await Get_Players()
+
     console.log(players)
     
     for (let i = 0; i < size(players); i++) {
@@ -50,7 +51,7 @@ async function Insert_Players_To(list_of_players_group){
 async function Get_Players() {
     
     try {
-        const response = await fetch('../../request/player/all', {
+        const request = await fetch('../../request/player/all', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -58,9 +59,11 @@ async function Get_Players() {
             body: JSON.stringify({ /* datos que quieres enviar en el body */ })
         });
 
-        const players = await response.json();
+        const response = await request.json();
 
-        return players
+        console.log(response.message)
+
+        return response.data
 
     } catch (error) {
         console.error('Error al obtener la información:', error);
