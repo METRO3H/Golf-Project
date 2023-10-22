@@ -21,6 +21,7 @@ export function Get_Register_Login_Page() {
 function registerSubmit(login_register_container){
 
     const register_form = login_register_container.querySelector("#register-form")
+    const ToastElement = login_register_container.querySelector('#liveToast')
 
     register_form.addEventListener("submit", (event) => {
         event.preventDefault()
@@ -31,12 +32,13 @@ function registerSubmit(login_register_container){
             password: register_form["password"].value
         }
         registerRequest(user_data)
-        Show_Toast(login_register_container)
+
+        Show_Toast(ToastElement, "Registro", "Registro exitoso. Ahora inicie sesión.")
         })
 }
 async function registerRequest(user_data){
 
-    try {
+
         const response = await fetch('../../request/register', {
             method: 'POST',
             headers: {
@@ -51,14 +53,12 @@ async function registerRequest(user_data){
 
         return registerResponse
 
-    } catch (error) {
-        console.error('Error al obtener la información:', error);
-    }
 }
 
 function loginSubmit(login_register_container){
 
     const login_form = login_register_container.querySelector("#login-form")
+    const ToastElement = login_register_container.querySelector('#liveToast')
 
     login_form.addEventListener("submit", (event) => {
 
@@ -69,7 +69,7 @@ function loginSubmit(login_register_container){
         }
 
         loginRequest(user_data)
-        Show_Toast(login_register_container)
+        Show_Toast(ToastElement, "Iniciar sesión", "Inicio de sesión exitoso" )
 
         })
 }
@@ -117,10 +117,16 @@ function handleSwitch(login_register_container){
 
 }
 
-function Show_Toast(login_register_container){
+function Show_Toast(ToastElement, title, body){
 
-    const ToastNotification = login_register_container.querySelector('#liveToast')
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotification)
+    
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastElement)
+
+    const toast_title = ToastElement.querySelector("#toast-title");
+    const toast_body = ToastElement.querySelector(".toast-body");
+  
+    toast_title.textContent = title;
+    toast_body.textContent = body;
 
     toastBootstrap.show()
 }
