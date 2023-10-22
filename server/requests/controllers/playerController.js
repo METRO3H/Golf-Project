@@ -17,7 +17,7 @@ export function getAll(request, response) {
         if(error){
           console.error("Error: failed to get users from the database.")
           return response.status(500).send({message: "Error en el servidor"});
-        }
+        } 
         const number_of_rows = user_rows.length
         if(number_of_rows === 0){
           console.log("Users not found")

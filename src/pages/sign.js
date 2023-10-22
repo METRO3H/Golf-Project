@@ -1,28 +1,27 @@
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js' 
 import login_register_containerHTML from "../views/login_register.html"
+import {Toast} from "../components/toast.js"
 import "../styles/login_register.css"
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
 
 export function Get_Register_Login_Page() {
     const login_register_container = document.createElement("div")
     login_register_container.id = "register-login-container"
     login_register_container.innerHTML = login_register_containerHTML
 
-    const login_form = login_register_container.querySelector("#login-form")
-    loginSubmit(login_form)
+    login_register_container.append(Toast("BOB", "Bob XD"))
+    
+
+    loginSubmit(login_register_container)
+    registerSubmit(login_register_container)
 
     handleSwitch(login_register_container)
 
-    const register_form = login_register_container.querySelector("#register-form")
-
-    registerSubmit(register_form)
-
-    Show_Toast(login_register_container)
-
-    Show_LoginToast(login_register_container)
-
     return login_register_container
 }
-function registerSubmit(register_form){
+function registerSubmit(login_register_container){
+
+    const register_form = login_register_container.querySelector("#register-form")
+
     register_form.addEventListener("submit", (event) => {
         event.preventDefault()
 
@@ -32,7 +31,7 @@ function registerSubmit(register_form){
             password: register_form["password"].value
         }
         registerRequest(user_data)
-
+        Show_Toast(login_register_container)
         })
 }
 async function registerRequest(user_data){
@@ -57,14 +56,21 @@ async function registerRequest(user_data){
     }
 }
 
-function loginSubmit(login_form){
+function loginSubmit(login_register_container){
+
+    const login_form = login_register_container.querySelector("#login-form")
+
     login_form.addEventListener("submit", (event) => {
+
         event.preventDefault()
         const user_data = {
             email: login_form["email"].value,
             password: login_form["password"].value
         }
+
         loginRequest(user_data)
+        Show_Toast(login_register_container)
+
         })
 }
 
@@ -112,25 +118,9 @@ function handleSwitch(login_register_container){
 }
 
 function Show_Toast(login_register_container){
-    const RegisterSubmitButton = login_register_container.querySelector('#submit-register-button')
+
     const ToastNotification = login_register_container.querySelector('#liveToast')
-
-    if (RegisterSubmitButton) {
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotification)
-    RegisterSubmitButton.addEventListener('click', () => {
-        toastBootstrap.show()
-        })
-    }   
-}
 
-function Show_LoginToast(login_register_container){
-    const LoginSubmitButton = login_register_container.querySelector('#SubmitLoginButton')
-    const ToastNotificationL = login_register_container.querySelector('#Logintoast')
-
-    if (LoginSubmitButton) {
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastNotificationL)
-    LoginSubmitButton.addEventListener('click', () => {
-        toastBootstrap.show()
-        })
-    }   
+    toastBootstrap.show()
 }

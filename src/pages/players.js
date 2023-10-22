@@ -27,10 +27,15 @@ async function Insert_Players_To(list_of_players_group){
 
     player_item_template.remove()
 
-    const players = await Get_Players()
+    const response = await Get_Players()
+    const body_response = await response.json()
 
-    console.log(players)
-    
+    if(!response.ok){
+        list_of_players_group.innerHTML = `<h1> ${body_response.message} </h1>`
+        return
+    }
+
+    const players = body_response.data
     for (let i = 0; i < size(players); i++) {
 
         const item = player_item_element.cloneNode(true)
@@ -50,22 +55,11 @@ async function Insert_Players_To(list_of_players_group){
 
 async function Get_Players() {
     
-    try {
-        const request = await fetch('../../request/player/all', {
+        return await fetch('../../request/player/all', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ /* datos que quieres enviar en el body */ })
+            }
         });
-
-        const response = await request.json();
-
-        console.log(response.message)
-
-        return response.data
-
-    } catch (error) {
-        console.error('Error al obtener la información:', error);
-    }
+        
 }

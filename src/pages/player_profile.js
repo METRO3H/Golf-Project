@@ -19,30 +19,22 @@ async function Insert_Profile_Data_To(player_profile_page_container, player_name
     const description = player_profile_page_container.querySelector("#description-item")
     const handicap = player_profile_page_container.querySelector("#handicap-item")
 
-    const player_data = await getUserData(player_name)
+    const response = await fetch(`../../request/player/${player_name}`);
+    const body_response = await response.json()
     
-    console.log(player_data)
+    if(!response.ok){
+        player_profile_page_container.innerHTML = `<h1> ${body_response.message} </h1>`
+        player_profile_page_container.style.display = "flex"
+        return
+    }
+
+    const player_data = body_response.data
 
     username.textContent = player_data.username
     email.textContent = player_data.email
     description.textContent = player_data.description
     handicap.textContent = player_data.handicap
 
-}
-
-async function getUserData(player_name){
-
-    try {
-        const request = await fetch(`../../request/player/${player_name}`);
-
-        const response = await request.json()
-
-        console.log(response.message)
-
-        return response.data
-
-    } catch (error) {
-        console.error('Error al obtener la información:', error);
-    }
+    player_profile_page_container.style.display = "flex"
 
 }
