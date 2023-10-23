@@ -7,7 +7,7 @@
   justify-content: flex-start;
   overflow: hidden;
   width: 450px;
-  
+  min-height: 530px;
   margin-top: 1%;
   margin-bottom: 1%;
 
@@ -201,9 +201,6 @@
 #register-button-switch{
   border-radius: 0px 100px 100px 0px;
 }
-
-
-
 
 @media (max-width: 450px) {
   #register-login-container {
