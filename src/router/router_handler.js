@@ -10,7 +10,6 @@ function handleRouteChange() {
 export function initializeRouter() {
   // Escuchar el evento popstate para detectar cambios en la URL
   window.addEventListener("popstate", handleRouteChange);
-
   // Inicializar la aplicación al cargar la página
   document.addEventListener("DOMContentLoaded", handleRouteChange);
 }
@@ -21,6 +20,8 @@ export function handleLinkClick(link) {
     const path = this.getAttribute("href"); // Obtiene la ruta del enlace
     // Cambiar la URL sin recargar la página
     history.pushState(null, null, path);
+
+
 
     // Renderizar el contenido basado en la nueva ruta
     Render_Content(path);

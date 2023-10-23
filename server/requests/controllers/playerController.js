@@ -4,7 +4,7 @@ import { database_path } from "../../constants/paths.js";
 export function getAll(request, response) {
   const db = new sqlite3.Database(database_path, (error) => {
     if (error) {
-      console.error("Error al abrir la base de datos. ->", error);
+      console.error("Error al abrir la base de datos. -> ", error.message);
      return response.status(500).send({message: "Error en el servidor"});
     }
 
@@ -15,7 +15,7 @@ export function getAll(request, response) {
   
       db.all(get_all_users_query, (error, user_rows) => {
         if(error){
-          console.error("Error: failed to get users from the database.")
+          console.error("Error: failed to get users from the database. -> ", error.message)
           return response.status(500).send({message: "Error en el servidor"});
         } 
         const number_of_rows = user_rows.length
@@ -44,7 +44,7 @@ export function getOne(request, response) {
 
   const db = new sqlite3.Database(database_path, (error) => {
     if (error) {
-      console.error("Error al abrir la base de datos. ->", error);
+      console.error("Error al abrir la base de datos. -> ", error.message);
      return response.status(500).send({ message: "Error en el servidor" });
     }
 
@@ -55,7 +55,7 @@ export function getOne(request, response) {
   
       db.get(get_user_query, [player_name], (error, user_row) => {
         if (error) {
-          console.error("Error: failed to get users from the database.");
+          console.error("Error: failed to get users from the database. -> ", error.message);
         return response.status(500).send({ message: "Error en el servidor" });
         }
         if (user_row == null) {

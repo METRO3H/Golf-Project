@@ -1,14 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import 'bootstrap/dist/js/bootstrap.bundle.js'
-
 import "./styles/index.css"
-import {nav_bar_section} from "./constants/dom.js"
 import { initializeRouter, handleLinkClick } from './router/router_handler.js';
-import Nav_Bar from "./components/nav_bar.js"
+import {Nav_Bar} from "./components/nav_bar.js"
+import { Toast } from "./components/toast.js";
 
 
-nav_bar_section.append(Nav_Bar())
-
+Nav_Bar()
+Toast()
 
 
 // Inicializar el enrutador

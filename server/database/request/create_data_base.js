@@ -11,8 +11,8 @@ const sql_create_tables = `--sql
 
 CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  email TEXT,
-  username TEXT,
+  email TEXT UNIQUE,
+  username TEXT UNIQUE,
   password TEXT,
   description TEXT,
   handicap TEXT

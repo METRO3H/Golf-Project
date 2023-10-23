@@ -19,7 +19,7 @@ export function login(request, response){
       db.get(verify_User_Query, [user_data.email, user_data.password],(error, user_row) => {
   
         if(error){
-          console.error("Error: failed to get users from the database.")
+          console.error("Error: failed to get users from the database. -> ", error.message)
           return response.status(500).send({message: "Error en el servidor"});
         }
         if(user_row == null){
@@ -28,7 +28,7 @@ export function login(request, response){
         }
         response.status(200).send(
             {
-            message: "Usuario correcto",
+            message: "Inicio de sesión exitoso",
             data: user_row
             }
           

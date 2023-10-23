@@ -1,5 +1,5 @@
 
-export const nav_bar_section = document.querySelector("#nav-bar")
+
 export const main_section = document.querySelector("#main-content")
 export const loading_bar = document.querySelector(".loading-bar")
 

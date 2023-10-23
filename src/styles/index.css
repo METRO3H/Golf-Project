@@ -52,5 +52,5 @@ body{
     animation:  loading-bar-animation 1000ms ;
     animation-name: loading-bar-animation;
     animation-duration: 500ms;
-    animation-timing-function: linear;
+    animation-timing-function: ease-out;
 }

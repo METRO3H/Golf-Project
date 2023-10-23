@@ -1,29 +1,30 @@
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js' 
+import { Show_Toast } from "../components/toast.js"
 import login_register_containerHTML from "../views/login_register.html"
-import {Toast} from "../components/toast.js"
+import { Render_Content } from '../router/render_content.js'
 import "../styles/login_register.css"
 
+const login_register_container = document.createElement("div")
+
 export function Get_Register_Login_Page() {
-    const login_register_container = document.createElement("div")
+
     login_register_container.id = "register-login-container"
     login_register_container.innerHTML = login_register_containerHTML
 
-    login_register_container.append(Toast("BOB", "Bob XD"))
+
+    loginSubmit()
+
+    registerSubmit()
     
-
-    loginSubmit(login_register_container)
-    registerSubmit(login_register_container)
-
-    handleSwitch(login_register_container)
+    handleSwitch()
 
     return login_register_container
 }
-function registerSubmit(login_register_container){
+
+function registerSubmit(){
 
     const register_form = login_register_container.querySelector("#register-form")
-    const ToastElement = login_register_container.querySelector('#liveToast')
 
-    register_form.addEventListener("submit", (event) => {
+    register_form.addEventListener("submit", async function(event) {
         event.preventDefault()
 
         const user_data = {
@@ -31,14 +32,6 @@ function registerSubmit(login_register_container){
             username: register_form["username"].value,
             password: register_form["password"].value
         }
-        registerRequest(user_data)
-
-        Show_Toast(ToastElement, "Registro", "Registro exitoso. Ahora inicie sesión.")
-        })
-}
-async function registerRequest(user_data){
-
-
         const response = await fetch('../../request/register', {
             method: 'POST',
             headers: {
@@ -47,36 +40,32 @@ async function registerRequest(user_data){
             body: JSON.stringify(user_data)
         });
 
-        const registerResponse = JSON.stringify(await response.json());
+        const body_response = await response.json()
 
-        console.log(registerResponse)
+        Show_Toast("Registro", body_response.message)
 
-        return registerResponse
+        if(!response.ok) return
 
+        const beautifier_button = login_register_container.querySelector("#beautifier-button")
+        const form_container = login_register_container.querySelector(".form-container")
+        form_container.style.transform = "translateX(0%)"
+        beautifier_button.style.transform = "translateX(0%)"
+        
+        })
 }
 
-function loginSubmit(login_register_container){
+function loginSubmit(){
 
     const login_form = login_register_container.querySelector("#login-form")
-    const ToastElement = login_register_container.querySelector('#liveToast')
 
-    login_form.addEventListener("submit", (event) => {
+    login_form.addEventListener("submit", async function(event){
 
         event.preventDefault()
+
         const user_data = {
             email: login_form["email"].value,
             password: login_form["password"].value
         }
-
-        loginRequest(user_data)
-        Show_Toast(ToastElement, "Iniciar sesión", "Inicio de sesión exitoso" )
-
-        })
-}
-
-async function loginRequest(user_data){
-    console.log(user_data)
-    try {
         const response = await fetch('../../request/login', {
             method: 'POST',
             headers: {
@@ -85,21 +74,25 @@ async function loginRequest(user_data){
             body: JSON.stringify(user_data)
         });
 
-        const loginResponse = await response.json();
-        console.log(loginResponse)
+        const body_response = await response.json()
 
-        return loginResponse
+        Show_Toast("Iniciar sesión", body_response.message)
 
-    } catch (error) {
-        console.error('Error al obtener la información:', error);
-    }
-
+        if(!response.ok) return;
+        
+        const path = '/player/all'
+        history.pushState(null, null, path);
+        Render_Content(path);
+       
+    })
 }
 
-function handleSwitch(login_register_container){
+
+function handleSwitch(){
 
     const register_switch = login_register_container.querySelector("#register-button-switch")
     const login_switch = login_register_container.querySelector("#login-button-switch") 
+
     const beautifier_button = login_register_container.querySelector("#beautifier-button")
     const form_container = login_register_container.querySelector(".form-container")
   
@@ -117,16 +110,3 @@ function handleSwitch(login_register_container){
 
 }
 
-function Show_Toast(ToastElement, title, body){
-
-    
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(ToastElement)
-
-    const toast_title = ToastElement.querySelector("#toast-title");
-    const toast_body = ToastElement.querySelector(".toast-body");
-  
-    toast_title.textContent = title;
-    toast_body.textContent = body;
-
-    toastBootstrap.show()
-}

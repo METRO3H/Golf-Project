@@ -2,9 +2,10 @@ import nav_bar_HTML from "../views/nav-bar.html"
 import "../styles/nav-bar.css"
 
 
-export default function(){
-    const Nav_Bar_div = document.createElement("div")
-    Nav_Bar_div.innerHTML = nav_bar_HTML
+export function Nav_Bar(){
+    const nav_bar_section = document.querySelector("#nav-bar")
+
+    nav_bar_section.innerHTML = nav_bar_HTML
     
-    return Nav_Bar_div
+    return
 }
