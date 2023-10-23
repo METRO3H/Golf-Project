@@ -5,6 +5,7 @@ import { start_loading_bar, end_loading_bar } from "../components/loading_bar.js
 
 export function Render_Content(route) {
   start_loading_bar()
+ 
   const page = Get_Page(route);
   
   current_page.Set_Title(page.title);

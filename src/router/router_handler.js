@@ -4,7 +4,6 @@ import { Render_Content } from "./render_content.js";
 function handleRouteChange() {
   const path = window.location.pathname; // Obtiene la ruta actual
   Render_Content(path);
-
 }
 
 export function initializeRouter() {
@@ -20,10 +19,9 @@ export function handleLinkClick(link) {
     const path = this.getAttribute("href"); // Obtiene la ruta del enlace
     // Cambiar la URL sin recargar la página
     history.pushState(null, null, path);
-
-
-
+    
     // Renderizar el contenido basado en la nueva ruta
+
     Render_Content(path);
   });
 }

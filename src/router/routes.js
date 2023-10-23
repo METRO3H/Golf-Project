@@ -7,6 +7,7 @@ export function Get_Page(route) {
   
   const url_parts = route.split("/");
   const parent_route = `/${url_parts[1] || ""}`;
+
   const page_not_found = {
     title: "Not Found",
     description: "Página no encontrada",
@@ -25,8 +26,6 @@ export function Get_Page(route) {
       description: "Juegos de Golf",
       content: "Juegos de Golf"
     },
-    "/player": Get_Player_Page(url_parts),
-
     "/table": {
       title: "Table",
       description: "Tabla de resultados (test no mas XD)",
@@ -47,6 +46,8 @@ export function Get_Page(route) {
       content: Get_Register_Login_Page(),
     },
   };
-  
+
+  if(parent_route === "/player") return Get_Player_Page(url_parts)
+
   return page[parent_route] || page_not_found
 }

@@ -1,26 +1,31 @@
 import sqlite3 from "sqlite3";
 import { database_path } from "../../constants/paths.js";
 
-export async function Register_User(request, response) {
+export function Register_User(request, response) {
   const user_data = request.body;
+  const verify_data_response = Verify_data(user_data)
 
-  verify_data(user_data)
+  if(!verify_data_response.ok){
+    return response.status(401).send({message: verify_data_response.message})
+  }
+
+
   const db = new sqlite3.Database(database_path, (error) => {
     if (error) {
       console.error("Error al abrir la base de datos. ->", error);
       return response.status(500).send({ message: "Error en el servidor" });
     }
-
+    
     db.serialize(() => {
       const description =
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis perspiciatis eligendi delectus suscipit a dignissimos optio aspernatur voluptatibus! At commodi, nobis est optio beatae ipsa saepe eum ullam vero reiciendis?";
       const handicap = Math.floor(Math.random() * 40);
 
-      const insert_user = db.prepare(
+      const register_user = db.prepare(
         `INSERT INTO users (email, username, password, description, handicap) VALUES (?, ?, ?, ?, ?)`
       );
 
-      insert_user.run(
+      register_user.run(
         user_data.email,
         user_data.username,
         user_data.password,
@@ -52,12 +57,28 @@ export async function Register_User(request, response) {
           });
         }
       );
+
+     
     });
+
   });
+
+
 }
 
-function verify_data(user_data) {
-  /* Logica para verificar datos*/
+function Verify_data(user_data){
 
-  return true;
+  const verify_data_response = {
+    ok: true,
+    message: ""
+  }
+
+    if(user_data.username.includes("_")){
+      verify_data_response.ok = false
+      verify_data_response.message = "El nombre de usuario no puede contener el caracter '_'"
+
+      return verify_data_response
+    }
+
+    return verify_data_response
 }
