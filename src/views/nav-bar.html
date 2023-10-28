@@ -92,14 +92,29 @@
             >player</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="login-register-button-navbar">
           <a
             class="nav-link"
             href="/sign"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
-            >Login/Register</a
+            >Iniciar Sesión</a
           >
+        </li>
+
+        <li class="nav-item dropdown" id="username-dropdown-navbar">
+          <button
+            class="btn dropdown-toggle text-white"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            id="username-dropdown-navbar-content"
+          >
+            Dropdown
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Ajustes</a></li>
+            <li><a class="dropdown-item" id="sign-out-button" href="#">Cerrar sesion</a></li>
+          </ul>
         </li>
       </ul>
     </div>

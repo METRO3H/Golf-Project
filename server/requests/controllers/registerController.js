@@ -1,7 +1,11 @@
 import sqlite3 from "sqlite3";
 import { database_path } from "../../constants/paths.js";
+import express from "express";
 
-export function Register_User(request, response) {
+const router = express.Router()
+
+router.post("/", function(request, response){
+  
   const user_data = request.body;
   const verify_data_response = Verify_data(user_data)
 
@@ -64,7 +68,7 @@ export function Register_User(request, response) {
   });
 
 
-}
+})
 
 function Verify_data(user_data){
 
@@ -82,3 +86,5 @@ function Verify_data(user_data){
 
     return verify_data_response
 }
+
+export default router

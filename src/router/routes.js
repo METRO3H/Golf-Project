@@ -2,6 +2,8 @@ import table from "../components/table.js";
 import test_Page from "../pages/test.js";
 import { Get_Register_Login_Page } from "../pages/sign.js";
 import { Get_Player_Page } from "./controllers/playerController.js";
+import user_profile from "../pages/user_profile.js";
+
 
 export function Get_Page(route) {
   
@@ -31,23 +33,28 @@ export function Get_Page(route) {
       description: "Tabla de resultados (test no mas XD)",
       content: table(),
     },
-    "/profile": {
-      title: "Profile",
-      description: "Perfil del Usuario",
-    },
+    
     "/test": {
       title: "Test",
       description: "Página de Pruebas",
       content: test_Page(),
     },
-    "/sign": {
-      title: "Sign",
-      description: "Registro/Inicio de Sesión",
-      content: Get_Register_Login_Page(),
-    },
   };
 
   if(parent_route === "/player") return Get_Player_Page(url_parts)
+  if(parent_route === "/profile") return user_profile()
 
+  if(parent_route === "/sign"){
+    if(localStorage.getItem('token') || localStorage.getItem('user_name')){
+      window.location.href = "/player/all"
+      return
+    }
+    return{
+      title: "Iniciar Sesión",
+      description: "Registro/Inicio de Sesión",
+      content: Get_Register_Login_Page(),
+    }
+
+  }
   return page[parent_route] || page_not_found
 }

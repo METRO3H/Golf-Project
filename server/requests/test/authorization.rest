@@ -1,0 +1,4 @@
+
+
+GET http://localhost:6069/request/profile
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ubiIsImlhdCI6MTY5ODUwNTczNSwiZXhwIjoxNjk4NTkyMTM1fQ.N3gfMUWdhuHte_hlz-37QHqGS1riaPm0BpBN6bq5ySc

@@ -1,0 +1,16 @@
+POST http://localhost:6069/request/login
+Content-Type: application/json
+
+{
+    "email": "wom",
+    "password": "XD"
+}
+
+###
+POST http://localhost:6069/request/login
+Content-Type: application/json
+
+{
+    "email": "nnn",
+    "password": "nnn"
+}

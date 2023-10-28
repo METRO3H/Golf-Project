@@ -27,7 +27,7 @@ async function Insert_Players_To(list_of_players_group){
 
     player_item_template.remove()
 
-    const response = await Get_Players()
+    const response = await fetch('../../request/player/all')
     const body_response = await response.json()
 
     if(!response.ok){
@@ -51,15 +51,4 @@ async function Insert_Players_To(list_of_players_group){
         
     }
     player_item_element.remove()
-}
-
-async function Get_Players() {
-    
-        return await fetch('../../request/player/all', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        
 }

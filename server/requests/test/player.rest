@@ -1,0 +1,4 @@
+
+//GET ALL PLAYERS
+GET http://localhost:6069/request/player/all
+
