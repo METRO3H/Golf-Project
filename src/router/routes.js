@@ -2,8 +2,8 @@ import table from "../components/table.js";
 import test_Page from "../pages/test.js";
 import { Get_Register_Login_Page } from "../pages/sign.js";
 import { Get_Player_Page } from "./controllers/playerController.js";
-import user_profile from "../pages/user_profile.js";
-
+import User_Profile from "../pages/user_profile.js";
+import Create_Game from "../pages/create_game.js"
 
 export function Get_Page(route) {
   
@@ -42,7 +42,8 @@ export function Get_Page(route) {
   };
 
   if(parent_route === "/player") return Get_Player_Page(url_parts)
-  if(parent_route === "/profile") return user_profile()
+  if(parent_route === "/profile") return User_Profile()
+  if(parent_route === "/create_game") return Create_Game()
 
   if(parent_route === "/sign"){
     if(localStorage.getItem('token') || localStorage.getItem('user_name')){
@@ -56,5 +57,8 @@ export function Get_Page(route) {
     }
 
   }
+
+  
+  
   return page[parent_route] || page_not_found
 }

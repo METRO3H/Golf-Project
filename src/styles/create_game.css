@@ -1,0 +1,23 @@
+
+#create_game_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin: 5px;
+}
+#create-game-main-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 805px;
+    height: 90%;
+
+    outline: 2px solid darkblue;
+    
+}
+@media (max-width: 805px) {
+    #create-game-main-div {
+      width: 100%;
+    }
+}
