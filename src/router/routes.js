@@ -6,7 +6,6 @@ import User_Profile from "../pages/user_profile.js";
 import Create_Game from "../pages/create_game.js"
 
 export function Get_Page(route) {
-  return Create_Game() // remove later
   const url_parts = route.split("/");
   const parent_route = `/${url_parts[1] || ""}`;
 
