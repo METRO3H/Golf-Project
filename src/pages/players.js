@@ -22,11 +22,6 @@ export default function(){
 
 async function Insert_Players_To(list_of_players_group){
 
-    const player_item_template = list_of_players_group.querySelector(".list-group-item")
-    const player_item_element = player_item_template.cloneNode(true)
-
-    player_item_template.remove()
-
     const response = await fetch('../../request/player/all')
     const body_response = await response.json()
 
@@ -34,6 +29,10 @@ async function Insert_Players_To(list_of_players_group){
         list_of_players_group.innerHTML = `<h1> ${body_response.message} </h1>`
         return
     }
+    const player_item_template = list_of_players_group.querySelector(".list-group-item")
+    const player_item_element = player_item_template.cloneNode(true)
+
+    player_item_template.remove()
 
     const players = body_response.data
     for (let i = 0; i < size(players); i++) {

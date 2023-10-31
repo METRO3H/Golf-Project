@@ -7,14 +7,67 @@
     margin: 5px;
 }
 #create-game-main-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-areas: 
+    "sidebar settings settings settings settings"
+    "sidebar settings settings settings settings"
+    "sidebar settings settings settings settings"
+    "sidebar settings settings settings settings"
+    "sidebar settings settings settings settings"
+    "sidebar create_game create_game create_game create_game"
+    ;
+    gap: 5px;
     width: 805px;
     height: 90%;
-
-    outline: 2px solid darkblue;
+    font-family: 'Argent CF Extra Bold', sans-serif;
     
+    
+}
+#sidebar-players{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    grid-area: sidebar;
+    background: var(--main_color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 50%);
+}
+
+.player-item{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 90%;
+    background: white;
+    outline: 2px solid black;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: border-box;
+}
+.player-icon-container{
+    width: 50px;
+    height: 50px;
+    margin-right: var(--bs-list-group-item-padding-x);
+}
+.user-icon-svg{
+    width: 50px;
+    height: 50px;
+}
+.player-item-title{
+    font-size: 1.25rem;
+}
+#game-settings{
+    grid-area: settings;
+    background: var(--main_color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 50%);
+}
+#create-game{
+    grid-area: create_game;
 }
 @media (max-width: 805px) {
     #create-game-main-div {

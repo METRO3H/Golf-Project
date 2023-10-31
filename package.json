@@ -291,7 +291,8 @@
   },
   "scripts": {
     "start:server": "nodemon server/server.js",
-    "start:watcher": "webpack --watch"
+    "start:watcher": "webpack --watch",
+    "start:styler-server": "npx webpack-dev-server"
   },
   "type": "module",
   "keywords": [],

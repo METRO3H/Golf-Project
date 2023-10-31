@@ -4,6 +4,7 @@
     --main_color: rgb(82,161,45);
     --main_color_gradient: linear-gradient(to right, rgb(28, 152, 93), rgb(34, 197, 94), rgb(28, 152, 93));
     --navbar_color_gradient: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(27,25,25,1) 35%, rgba(27,25,25,1) 65%, rgba(0,0,0,1) 100%);
+    --background_color_create_game: linear-gradient(to right, rgb(28, 152, 93), rgb(48, 196, 102), rgb(28, 152, 93));
 }
 body{
     min-height: 100vh;
