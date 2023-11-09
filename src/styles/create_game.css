@@ -20,6 +20,7 @@
     width: 805px;
     height: 90%;
     font-family: 'Argent CF Extra Bold', sans-serif;
+    border-width: 3px;
     
     
 }
@@ -30,8 +31,9 @@
     align-items: center;
     gap: 15px;
     grid-area: sidebar;
-    background: var(--main_color);
+    background: white;
     border-radius: 10px;
+    border-width: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 50%);
 }
 
@@ -62,7 +64,7 @@
 }
 #game-settings{
     grid-area: settings;
-    background: var(--main_color);
+    background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 50%);
 }
@@ -73,4 +75,17 @@
     #create-game-main-div {
       width: 100%;
     }
+}
+
+#selecc{
+    border-width: 1px;
+    border-color: black;
+}
+
+body{
+    background-color: rgb(5, 110, 10);
+    background-image: url('/production/7aa0bec71a0a19df40ba.png'); /* Reemplaza 'ruta-de-la-imagen.jpg' con la ubicación de tu imagen */
+    background-size: center;
+    background-position: left;
+    background-repeat: no-repeat; /* Opcional: evita que la imagen se repita */
 }
