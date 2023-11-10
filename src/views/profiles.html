@@ -6,17 +6,145 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 id="username-item" class="card-title">Hola </h5>
+          <h1 id="username-item" class="card-title">Hola </h1>
           <ul class="list-group">
             <li id="email-item" class="list-group-item">Correo: </li>
             <li id="handicap-item" class="list-group-item">Handicap: </li>
             <li id="description-item" class="list-group-item">Descripción: </li>
           </ul>
+          
           <div class="card-body">
-            <button href="#" class="btn btn-primary">Ver estadísticas</button>
-            <button href="#" id="friend-request-button" class="btn btn-info">Enviar solicitud de amistad</button>
-        </div>
+                        <button href="#" class="btn btn-primary">Ver estadísticas</button>
+                        <button href="#" id="friend-request-button" class="btn btn-info">Enviar solicitud de amistad</button>
+            </div>
+            <h5>Estadísticas</h5>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item">Tipo de juego preferido</li>
+              <li class="list-group-item"></li>
+            </ul>
+            <ul class="list-group list-group-horizontal-sm">
+              <li class="list-group-item">Partidas jugadas</li>
+              <li class="list-group-item"></li>
+            </ul>
+            <ul class="list-group list-group-horizontal-md">
+              <li class="list-group-item">Apuestas ganadas</li>
+              <li class="list-group-item"></li>
+            </ul>
+            <ul class="list-group list-group-horizontal-lg">
+              <li class="list-group-item">Golpes totales</li>
+              <li class="list-group-item"></li>
+            </ul>
+          </div>
+
+          <div class="card-body">
+            <!-- Botón para abrir el primer modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">Historial</button>
+            <!-- Modal 1 -->
+            <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Contenido del primer modal -->
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modal1Label">Tus partidas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Lista dentro del cuerpo del modal -->
+
+                    <div class="accordion" id="accordionExample">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Partida 1
+                          </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                            <ul class="list-group">
+                              <li class="list-group-item">Fecha: </li>
+                              <li class="list-group-item">Cancha: </li>
+                              <li class="list-group-item">Tipo de juego: </li>
+                              <li class="list-group-item">Puntaje: </li>
+                              <li class="list-group-item">Resultado: </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Partida 2
+                          </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                            <ul class="list-group">
+                              <li class="list-group-item">Fecha: </li>
+                              <li class="list-group-item">Cancha: </li>
+                              <li class="list-group-item">Tipo de juego: </li>
+                              <li class="list-group-item">Puntaje: </li>
+                              <li class="list-group-item">Resultado: </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Partida 3
+                          </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                            <ul class="list-group">
+                              <li class="list-group-item">Fecha: </li>
+                              <li class="list-group-item">Cancha: </li>
+                              <li class="list-group-item">Tipo de juego: </li>
+                              <li class="list-group-item">Puntaje: </li>
+                              <li class="list-group-item">Resultado: </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón para abrir el segundo modal -->
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal2">Amigos</button>
+            <!-- Modal 2 -->
+            <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Contenido del segundo modal -->
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modal2Label">Tus amigos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Lista dentro del cuerpo del modal -->
+                    <ol class="list-group list-group-numbered">
+                      <li class="list-group-item">Willyrex</li>
+                      <li class="list-group-item">Garet Bale</li>
+                      <li class="list-group-item">Lando Norris</li>
+                    </ol>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+>>>>>>> 560413d96d7307da9b92983d249ac4d1882cc92e
         </div>
       </div>
     </div>
-  </div>
+</div>
