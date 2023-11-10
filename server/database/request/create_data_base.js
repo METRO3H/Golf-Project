@@ -26,7 +26,8 @@ const sql_create_tables = [
   );`,
   `CREATE TABLE Friends (
     user_id INTEGER,
-    friend_id INTEGER,
+    friend_id INTEGER, 
+    status TEXT DEFAULT 'Waiting',
     PRIMARY KEY(user_id, friend_id),
     FOREIGN KEY(user_id) REFERENCES Users(id),
     FOREIGN KEY(friend_id) REFERENCES Users(id)
