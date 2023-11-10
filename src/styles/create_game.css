@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    margin: 5px;
+    background: linear-gradient(to right, #1B5E20 0%, #00FF00 50%, #1B5E20 100%);
 }
 #create-game-main-div{
     display: grid;
@@ -82,13 +82,4 @@
 #selecc{
     border-width: 1px;
     border-color: black;
-}
-
-body{
-    /*background-color: #056e0a;*/
-    background: linear-gradient(to right, #1B5E20 0%, #00FF00 50%, #1B5E20 100%);
-    /*background-image: url('/production/'); 
-    background-size: center;
-    background-position: left;
-    background-repeat: no-repeat; */
 }
