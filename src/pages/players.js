@@ -41,13 +41,12 @@ export default function(){
         });
     
         const body_response = await response.json()
-    
+
     });
 
     // Append the form to the container
  
     players_page_container.insertBefore(form, players_page_container.firstChild);
-
 //TEST CAMBIAR HANDICAP
 
 
