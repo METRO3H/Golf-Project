@@ -10,8 +10,9 @@ export function getAll(request, response) {
 
     db.serialize(() => {
       const get_all_users_query = `--sql
-        SELECT username, description, handicap FROM users;
-        `;
+        SELECT Users.username, Users.description, User_stats.handicap, User_stats.games_won
+        FROM Users 
+        INNER JOIN User_stats ON Users.id = User_stats.id`;
   
       db.all(get_all_users_query, (error, user_rows) => {
         if(error){
