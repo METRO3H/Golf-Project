@@ -67,9 +67,11 @@
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 50%);
+    position: relative;
 }
 #create-game{
-    grid-area: create_game;
+    grid-area: crear partida;
+    position: relative;
 }
 @media (max-width: 805px) {
     #create-game-main-div {
@@ -83,9 +85,10 @@
 }
 
 body{
-    background-color: rgb(5, 110, 10);
-    background-image: url('/production/7aa0bec71a0a19df40ba.png'); /* Reemplaza 'ruta-de-la-imagen.jpg' con la ubicación de tu imagen */
+    /*background-color: #056e0a;*/
+    background: linear-gradient(to right, #1B5E20 0%, #00FF00 50%, #1B5E20 100%);
+    /*background-image: url('/production/'); 
     background-size: center;
     background-position: left;
-    background-repeat: no-repeat; /* Opcional: evita que la imagen se repita */
+    background-repeat: no-repeat; */
 }
