@@ -17,8 +17,11 @@ router.get("/", Verify_Token, function(request, response){
   
       db.serialize(() => {
         const get_user_query = `--sql
-          SELECT email, username, description, handicap from users WHERE username = ?
-          `;
+          SELECT Users.email, Users.username, Users.description, User_stats.handicap 
+          FROM Users 
+          INNER JOIN User_stats ON Users.id = User_stats.user_id 
+          WHERE Users.username = ?
+        `;
     
         db.get(get_user_query, [user_name], (error, user_row) => {
           if (error) {
