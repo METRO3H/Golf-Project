@@ -72,7 +72,7 @@ router.post("/", function (request, response) {
           if (error) {
             db.run('ROLLBACK');
             console.error(
-              "Error: failed to insert user stats into database. -> ",
+              "Error : failed to insert user stats into database. -> ",
               error.message
             );
             return response
