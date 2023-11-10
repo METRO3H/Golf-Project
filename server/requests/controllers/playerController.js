@@ -53,7 +53,7 @@ export function getOne(request, response) {
       const get_user_query = `--sql
       SELECT Users.email, Users.username, Users.description, User_stats.handicap 
       FROM Users 
-      INNER JOIN User_stats ON Users.id = User_stats.user_id 
+      INNER JOIN User_stats ON Users.id = User_stats.id 
       WHERE Users.username = ?
         `;
   
