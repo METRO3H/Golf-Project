@@ -15,6 +15,27 @@ export default function(){
 
     searcher_container.append( searcher_component() )
 
+//TEST CAMBIAR HANDICAP
+    // Create new form
+    const form = document.createElement('form');
+    form.innerHTML = `
+        <input type="text" id="id-input" placeholder="Enter ID">
+        <input type="text" id="handicap-input" placeholder="Enter Handicap">
+        <button type="submit">Change Handicap</button>
+    `;
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('id-input').value;
+        const handicap = document.getElementById('handicap-input').value;
+        await change_user_handicap(id, handicap);
+    });
+
+    // Append the form to the container
+ 
+    players_page_container.insertBefore(form, players_page_container.firstChild);
+    //TEST CAMBIAR HANDICAP
+
+
     Insert_Players_To(list_of_players_group)
 
     return players_page_container
@@ -25,10 +46,15 @@ async function Insert_Players_To(list_of_players_group){
     const response = await fetch('../../request/player/all')
     const body_response = await response.json()
 
+    // now sort the players by handicap
+    const body_response_sort = body_response.data.sort((a,b) => a.handicap - b.handicap)
+    console.log('Sorted players by handicap: ', body_response_sort)
+
     if(!response.ok){
         list_of_players_group.innerHTML = `<h1> ${body_response.message} </h1>`
         return
     }
+
     const player_item_template = list_of_players_group.querySelector(".list-group-item")
     const player_item_element = player_item_template.cloneNode(true)
 
@@ -50,4 +76,23 @@ async function Insert_Players_To(list_of_players_group){
         
     }
     player_item_element.remove()
+}
+
+async function change_user_handicap(id, handicap) {
+    const user_data = {
+        id: id,
+        handicap: handicap
+    }
+
+    const response = await fetch('../../request/player/change_handicap', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user_data)
+    });
+
+    const body_response = await response.json()
+
+    // Handle the response...
 }

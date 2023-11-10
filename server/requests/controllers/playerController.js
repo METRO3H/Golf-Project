@@ -53,7 +53,7 @@ export function getOne(request, response) {
       const get_user_query = `--sql
       SELECT Users.email, Users.username, Users.description, User_stats.handicap 
       FROM Users 
-      INNER JOIN User_stats ON Users.id = User_stats.id 
+      INNER JOIN User_stats ON Users.id = User_stats.id
       WHERE Users.username = ?
         `;
   
@@ -82,4 +82,25 @@ export function getOne(request, response) {
 
 
 
+}
+
+export function changeHandicap(request, response) {
+  const db = new sqlite3.Database(database_path, (error) => {
+    if (error) {
+      console.error("Error al abrir la base de datos. -> ", error.message);
+      return response.status(500).send({message: "Error en el servidor"});
+    }
+
+    const { id, handicap } = request.body;
+
+    db.run(`UPDATE User_stats SET handicap = ? WHERE id = ?`, [handicap, id], function(err) {
+      if (err) {
+        console.error("Error: failed to update user handicap. -> ", err.message);
+        return response.status(500).send({message: "Error en el servidor"});
+      }
+
+      console.log(`Row(s) updated: ${this.changes}`);
+      response.status(200).send({message: "Handicap updated successfully!"});
+    });
+  });
 }
