@@ -4,8 +4,6 @@ import profile_route from "../controllers/profile_controller.js"
 import login_route from "../controllers/loginController.js"
 import register_route from "../controllers/registerController.js"
 
-
-
 const router = express.Router()
 
 router.use('/player', player_routes)
