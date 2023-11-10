@@ -85,6 +85,7 @@ export function getOne(request, response) {
 }
 
 export function changeHandicap(request, response) {
+  console.log('alo');
   const db = new sqlite3.Database(database_path, (error) => {
     if (error) {
       console.error("Error al abrir la base de datos. -> ", error.message);

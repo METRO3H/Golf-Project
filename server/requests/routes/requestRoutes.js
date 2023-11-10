@@ -10,7 +10,6 @@ router.use('/player', player_routes)
 router.use('/login', login_route)
 router.use('/register', register_route)
 router.use('/profile', profile_route)
-
 router.use('/add/friend', add_friend_route)
 
 
