@@ -13,17 +13,16 @@ const sql_create_tables = [
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE,
     username TEXT UNIQUE,
-    game_id INTEGER
+    game_id INTEGER,
+    password TEXT,
+    description TEXT
   );`,
   `CREATE TABLE User_stats (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    game_id INTEGER,
-    user_id INTEGER,
+    id INTEGER,
     handicap INTEGER,
     games_won INTEGER,
     games_played INTEGER,
-    FOREIGN KEY(user_id) REFERENCES Users(id),
-    FOREIGN KEY(game_id) REFERENCES Games(id)
+    FOREIGN KEY(id) REFERENCES Users(id)
   );`,
   `CREATE TABLE Friends (
     user_id INTEGER,

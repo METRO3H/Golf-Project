@@ -84,7 +84,6 @@
 
 body{
     background-color: rgb(5, 110, 10);
-    background-image: url('/production/7aa0bec71a0a19df40ba.png'); /* Reemplaza 'ruta-de-la-imagen.jpg' con la ubicación de tu imagen */
     background-size: center;
     background-position: left;
     background-repeat: no-repeat; /* Opcional: evita que la imagen se repita */
