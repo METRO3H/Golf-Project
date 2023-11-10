@@ -63,12 +63,12 @@ router.post("/", function (request, response) {
               .status(500)
               .send({ message: "Error en el servidor" });
           }
-        
+        const id = this.lastID;
         const handicap = Math.floor(Math.random() * 40);
         const register_user_stats = db.prepare(
-          `INSERT INTO User_stats (handicap, games_won, games_played) VALUES (?, ?, ?)`
+          `INSERT INTO User_stats (id, handicap, games_won, games_played) VALUES (?, ?, ?, ?)`
         );
-        register_user_stats.run(handicap, 0, 0, function (error) {
+        register_user_stats.run(id, handicap, 0, 0, function (error) {
           if (error) {
             db.run('ROLLBACK');
             console.error(
