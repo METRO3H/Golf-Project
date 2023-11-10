@@ -4,7 +4,6 @@ dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 export function Verify_Token(request, response, next){
-
     const bearer_header = request.headers.authorization;
 
     if (!bearer_header) {

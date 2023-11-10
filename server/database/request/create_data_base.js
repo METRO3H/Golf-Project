@@ -25,13 +25,13 @@ const sql_create_tables = [
     FOREIGN KEY(id) REFERENCES Users(id)
   );`,
   `CREATE TABLE Friends (
-    user_id INTEGER,
-    friend_id INTEGER, 
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_name INTEGER,
+    friend_name INTEGER, 
     status TEXT DEFAULT 'Waiting',
-    PRIMARY KEY(user_id, friend_id),
-    FOREIGN KEY(user_id) REFERENCES Users(id),
-    FOREIGN KEY(friend_id) REFERENCES Users(id)
-  );`,
+    FOREIGN KEY(user_name) REFERENCES Users(username),
+    FOREIGN KEY(friend_name) REFERENCES Users(username)
+);`,
   `CREATE TABLE Game_stats (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,

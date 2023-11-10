@@ -21,7 +21,7 @@ router.post("/", function(request, response){
 
     db.serialize(() => {
       const check_user = db.prepare(
-        `SELECT username FROM users WHERE email = ? AND password = ?`
+        `SELECT id, username FROM users WHERE email = ? AND password = ?`
       );
 
       check_user.get(
