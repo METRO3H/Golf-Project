@@ -22,6 +22,18 @@ router.post("/", function (request, response) {
       const description =
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis perspiciatis eligendi delectus suscipit a dignissimos optio aspernatur voluptatibus! At commodi, nobis est optio beatae ipsa saepe eum ullam vero reiciendis?";
 
+      db.run('BEGIN EXCLUSIVE TRANSACTION', function(error){
+
+        if(error){
+          console.error(
+            "Error: failed to start transaction in database. -> ",
+            error.message
+          );
+          return response.status(500).send({ message: "Error en el servidor" });
+        }
+
+      })
+      
       const register_user = db.prepare(
         `INSERT INTO users (email, username, password, description) VALUES (?, ?, ?, ?)`
       );
@@ -33,10 +45,14 @@ router.post("/", function (request, response) {
         description,
         function (error) {
           if (error) {
+
+            db.run('ROLLBACK');
+
             console.error(
               "Error: failed to insert user into database. -> ",
               error.message
             );
+            
             if (error.message.includes("UNIQUE constraint failed")) {
               return response.status(500).send({
                 message: "El correo electrónico o nombre de usuario ya existe.",
@@ -47,13 +63,14 @@ router.post("/", function (request, response) {
               .status(500)
               .send({ message: "Error en el servidor" });
           }
-        
+        const id = this.lastID;
         const handicap = Math.floor(Math.random() * 40);
         const register_user_stats = db.prepare(
-          `INSERT INTO User_stats (handicap, games_won, games_played) VALUES (?, ?, ?)`
+          `INSERT INTO User_stats (id, handicap, games_won, games_played) VALUES (?, ?, ?, ?)`
         );
-        register_user_stats.run(handicap, 0, 0,function (error) {
+        register_user_stats.run(id, handicap, 0, 0, function (error) {
           if (error) {
+            db.run('ROLLBACK');
             console.error(
               "Error: failed to insert user stats into database. -> ",
               error.message
@@ -62,6 +79,7 @@ router.post("/", function (request, response) {
               .status(500)
               .send({ message: "Error en el servidor" });
           }
+          db.run('COMMIT');
           console.log("User added successfully!");
           response.status(200).send({
             message: "¡Usuario creado exitosamente!",
