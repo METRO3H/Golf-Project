@@ -86,6 +86,7 @@ function loginSubmit(){
         localStorage.setItem('token', body_response.jwt);
         localStorage.setItem('user_id', body_response.data.id);
         localStorage.setItem('user_name', body_response.data.username);
+        localStorage.setItem('user_privilege', body_response.data.privilege);
 
         Update_Nav_Bar(body_response.data.username)
 
