@@ -34,12 +34,11 @@ router.post("/:friend_name", Verify_Token, function (request, response) {
           return response.status(500).send({ message: "Error en el servidor" });
         }
         update_friend_request.finalize();
+        db.close();
+        return response.status(200).send({
+          message: "Solicitud de amistad enviada con éxito",
+        });
       });
-      db.close();
-      return response.status(200).send({
-        message: "Solicitud de amistad enviada con éxito",
-      });
-
     });
   });
 });
