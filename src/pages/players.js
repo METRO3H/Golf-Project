@@ -16,37 +16,41 @@ export default function(){
     searcher_container.append( searcher_component() )
 
 //TEST CAMBIAR HANDICAP
-    // Create new form
-    const form = document.createElement('form');
-    form.innerHTML = `
-        <input type="text" id="id-input" placeholder="Enter ID">
-        <input type="text" id="handicap-input" placeholder="Enter Handicap">
-        <button>Change Handicap</button>
-    `;
-    form.addEventListener('click', async (e) => {
-        const user_data = {
-            id: document.getElementById('id-input').value,
-            handicap: document.getElementById('handicap-input').value
-        }
-        e.preventDefault();
-        const id = document.getElementById('id-input').value;
-        const handicap = document.getElementById('handicap-input').value;
-    
-        const response = await fetch('../../request/player/change_handicap', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user_data)
-        });
-    
-        const body_response = await response.json()
 
-    });
+const privilege = localStorage.getItem('user_privilege');
+console.log(privilege);
+if (privilege === 'admin') {
+  // Create new form
+  const form = document.createElement('form');
+  form.innerHTML = `
+      <input type="text" id="id-input" placeholder="Enter ID">
+      <input type="text" id="handicap-input" placeholder="Enter Handicap">
+      <button>Change Handicap</button>
+  `;
+  form.addEventListener('click', async (e) => {
+      const user_data = {
+          id: document.getElementById('id-input').value,
+          handicap: document.getElementById('handicap-input').value
+      }
+      e.preventDefault();
+      const id = document.getElementById('id-input').value;
+      const handicap = document.getElementById('handicap-input').value;
+  
+      const response = await fetch('../../request/player/change_handicap', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user_data)
+      });
+  
+      const body_response = await response.json()
 
-    // Append the form to the container
- 
-    players_page_container.insertBefore(form, players_page_container.firstChild);
+  });
+
+  // Append the form to the container
+  players_page_container.insertBefore(form, players_page_container.firstChild);
+}
 //TEST CAMBIAR HANDICAP
 
 
@@ -62,7 +66,6 @@ async function Insert_Players_To(list_of_players_group){
 
     // now sort the players by handicap
     const body_response_sort = body_response.data.sort((a,b) => a.handicap - b.handicap)
-    console.log('Sorted players by handicap: ', body_response_sort)
 
     if(!response.ok){
         list_of_players_group.innerHTML = `<h1> ${body_response.message} </h1>`

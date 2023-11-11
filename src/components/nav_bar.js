@@ -30,7 +30,9 @@ export function Update_Nav_Bar(user_name){
 function Sign_Out(){
     localStorage.removeItem('token');
     localStorage.removeItem('user_name');
-
+    localStorage.removeItem('user_privilege');
+    localStorage.removeItem('user_id');
+    
     window.location.href = "/player/all";
     
     return

@@ -15,7 +15,8 @@ const sql_create_tables = [
     username TEXT UNIQUE,
     game_id INTEGER DEFAULT 0,
     password TEXT,
-    description TEXT
+    description TEXT,
+    privilege TEXT DEFAULT 'user'
   );`,
   `CREATE TABLE User_stats (
     id INTEGER,
