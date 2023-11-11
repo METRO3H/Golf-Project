@@ -41,13 +41,12 @@ export default function(){
         });
     
         const body_response = await response.json()
-    
+
     });
 
     // Append the form to the container
  
     players_page_container.insertBefore(form, players_page_container.firstChild);
-
 //TEST CAMBIAR HANDICAP
 
 
@@ -92,3 +91,15 @@ async function Insert_Players_To(list_of_players_group){
     }
     player_item_element.remove()
 }
+
+function generateInvitationLink() {
+    return 'http://localhost:6069/create_game' + Math.random().toString(36);
+}
+
+function buildInvitationLink() {
+    const invitationLink = generateInvitationLink();
+    document.getElementById('invitation-link').innerText = invitationLink;
+}
+
+// Llama a la función cuando la página se carga
+window.onload = buildInvitationLink;
