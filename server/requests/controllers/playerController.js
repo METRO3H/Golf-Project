@@ -51,7 +51,6 @@ export function getOne(request, response) {
       console.error("Error al abrir la base de datos. -> ", error.message);
       return response.status(500).send({ message: "Error en el servidor" });
     }
-    console.log(player_name, user_name)
     db.serialize(() => {
       
         const get_user_query = db.prepare(
@@ -75,23 +74,19 @@ export function getOne(request, response) {
               .send({ message: "Error en el servidor" });
           }
 
-          console.log(user_row)
-
           if (user_row == null) {
             db.close();
             console.log("User not found");
             return response.status(401).send({ message: "Usuario no válido" });
           }
-
-  
+          get_user_query.finalize()
+          db.close();
           return response.status(200).send({
             message: "Usuario correcto",
             data: user_row,
           });
           
         });
-
-        
       
     });
   });

@@ -6,7 +6,7 @@ export default function (error, TYPE_ERROR) {
     return;
   }
 
-  var message = "";
+  var message = ""; 
 
   switch (TYPE_ERROR) {
     case db_error.create_database:
