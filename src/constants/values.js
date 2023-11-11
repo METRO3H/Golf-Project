@@ -8,3 +8,10 @@ export const Stat_Value = {
   };
 
 export const Stat_Name = ["HOYO","PAR", "VENTAJA", "AZULES", "BLANCAS", "ROJAS"];
+
+export const friend_request_status = {
+  waiting: "Waiting",
+  accepted: "Accepted",
+  rejected: "Rejected",
+  not_found: null
+}
