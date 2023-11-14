@@ -44,8 +44,8 @@ const sql_create_tables = [
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   blocker_username TEXT,
   blocked_username TEXT, 
-  FOREIGN KEY(sender_username) REFERENCES Users(username),
-  FOREIGN KEY(receiving_username) REFERENCES Users(username)
+  FOREIGN KEY(blocker_username) REFERENCES Users(username),
+  FOREIGN KEY(blocked_username) REFERENCES Users(username)
 );`,
   `CREATE TABLE Game_stats (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
