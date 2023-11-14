@@ -27,11 +27,25 @@ const sql_create_tables = [
   );`,
   `CREATE TABLE Friends (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_name INTEGER,
-    friend_name INTEGER, 
-    status TEXT DEFAULT 'Waiting',
-    FOREIGN KEY(user_name) REFERENCES Users(username),
-    FOREIGN KEY(friend_name) REFERENCES Users(username)
+    username_1 TEXT,
+    username_2 TEXT, 
+    FOREIGN KEY(username_1) REFERENCES Users(username),
+    FOREIGN KEY(username_2) REFERENCES Users(username)
+  );`,
+  `CREATE TABLE Friend_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sender_username TEXT,
+    receiving_username TEXT, 
+    status TEXT,
+    FOREIGN KEY(sender_username) REFERENCES Users(username),
+    FOREIGN KEY(receiving_username) REFERENCES Users(username)
+);`,
+`CREATE TABLE Blocked_users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  blocker_username TEXT,
+  blocked_username TEXT, 
+  FOREIGN KEY(sender_username) REFERENCES Users(username),
+  FOREIGN KEY(receiving_username) REFERENCES Users(username)
 );`,
   `CREATE TABLE Game_stats (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
