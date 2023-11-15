@@ -5,11 +5,11 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/:friend_name", Verify_Token, function (request, response) {
+router.post("/:user_name_requested", Verify_Token, function (request, response) {
   const user_name = request.data.username;
-  const friend_name = request.params.friend_name.replace(/_/g, " ");
+  const user_name_requested = request.params.user_name_requested.replace(/_/g, " ");
 
-  if (user_name === friend_name) {
+  if (user_name === user_name_requested) {
     return response
       .status(401)
       .send({ message: "No te puedes auto enviar solicitud de amistad" });
@@ -23,9 +23,9 @@ router.post("/:friend_name", Verify_Token, function (request, response) {
     }
     db.serialize(() => {
       const update_friend_request = db.prepare(
-        `INSERT INTO Friends (user_name, friend_name) VALUES (?, ?)`
+        `INSERT INTO Friends (user_name, user_name_requested) VALUES (?, ?)`
       );
-      update_friend_request.run(user_name, friend_name, function (error) {
+      update_friend_request.run(user_name, user_name_requested, function (error) {
         if (error) {
           console.error(
             "Error: failed to insert data on database. -> ",

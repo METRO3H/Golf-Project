@@ -1,11 +1,11 @@
-import sqlite3 from 'sqlite3'; // Importar SQLite
-import handle_sql_error from './handle_sql_error.js';
-import * as db_error from '../../constants/db_error.js';
-import { database_path } from '../../constants/paths.js';
+import sqlite3 from "sqlite3"; // Importar SQLite
+import handle_sql_error from "./handle_sql_error.js";
+import * as db_error from "../../constants/db_error.js";
+import { database_path } from "../../constants/paths.js";
 
 // Crear una nueva instancia de la base de datos
-const db = new sqlite3.Database(database_path, 
-(error) => handle_sql_error(error, db_error.create_database)
+const db = new sqlite3.Database(database_path, (error) =>
+  handle_sql_error(error, db_error.create_database)
 );
 
 const sql_create_tables = [
@@ -40,7 +40,7 @@ const sql_create_tables = [
     FOREIGN KEY(sender_username) REFERENCES Users(username),
     FOREIGN KEY(receiving_username) REFERENCES Users(username)
 );`,
-`CREATE TABLE Blocked_users (
+  `CREATE TABLE Blocked_users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   blocker_username TEXT,
   blocked_username TEXT, 
@@ -71,7 +71,7 @@ const sql_create_tables = [
   `CREATE TABLE Field_side (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     side_name TEXT
-  );`
+  );`,
 ];
 
 sql_create_tables.forEach((sql) => {
