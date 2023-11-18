@@ -44,7 +44,7 @@ export function getAll(request, response) {
 export function getOne(request, response) {
   const player_name = request.params.player_name.replace(/_/g, " ");
 
-  const user_name = request.body.user_name
+  const user_name = request.body.user_name;
 
   const db = new sqlite3.Database(database_path, (error) => {
     if (error) {
@@ -52,42 +52,58 @@ export function getOne(request, response) {
       return response.status(500).send({ message: "Error en el servidor" });
     }
     db.serialize(() => {
-      
-        const get_user_query = db.prepare(
-        `SELECT Users.email, Users.username, Users.description, User_stats.handicap, Friends.status
-        FROM Users 
-        INNER JOIN User_stats ON Users.id = User_stats.id
-        LEFT JOIN Friends ON Users.username = Friends.friend_name 
-        WHERE Users.username = ? AND (Friends.user_name = ? OR Friends.user_name IS NULL)
+      const get_user_query = db.prepare(
+        `--sql
+      WITH parameter(username_to_compare) AS (
+          SELECT ?
+      )
+      SELECT Users.email, Users.username, Users.description, User_stats.handicap, Last_friend_request.id, Last_friend_request.sender_username, Last_friend_request.receiving_username, Last_friend_request.status AS "Friend_request_status", Friends.username_1, Friends.username_2,
+        CASE 
+        WHEN ((Friends.username_1 IS NOT NULL) OR (Friends.username_2 IS NOT NULL)) THEN TRUE
+        ELSE FALSE
+        END AS friendship_status
+      FROM Users
+      INNER JOIN User_stats ON Users.id = User_stats.id
+      LEFT JOIN parameter ON TRUE
+      LEFT JOIN (SELECT * FROM Friend_requests ORDER BY id DESC LIMIT 1) AS Last_friend_request ON 
+      (
+          ( Last_friend_request.sender_username = Users.username AND Last_friend_request.receiving_username = parameter.username_to_compare)
+          OR 
+          ( Last_friend_request.sender_username = parameter.username_to_compare AND Last_friend_request.receiving_username = Users.username)
+      )
+      LEFT JOIN Friends ON 
+      (
+          ( Friends.username_1 = Users.username AND Friends.username_2 = parameter.username_to_compare )
+          OR 
+          ( Friends.username_1 = parameter.username_to_compare AND Friends.username_2 = Users.username )
+      )
+      WHERE Users.username = ?
         `
-        );
+      );
 
-        get_user_query.get(player_name, user_name, function (error, user_row){
-          if (error) {
-            console.error(
-              "Error: failed to get users from the database. -> ",
-              error.message
-            );
-            db.close();
-            return response
-              .status(500)
-              .send({ message: "Error en el servidor" });
-          }
-
-          if (user_row == null) {
-            db.close();
-            console.log("User not found");
-            return response.status(401).send({ message: "Usuario no válido" });
-          }
-          get_user_query.finalize()
+      get_user_query.get(user_name, player_name, function (error, user_row) {
+        if (error) {
+          console.error(
+            "Error: failed to get users from the database. -> ",
+            error.message
+          );
           db.close();
-          return response.status(200).send({
-            message: "Usuario correcto",
-            data: user_row,
-          });
-          
+          return response.status(500).send({ message: "Error en el servidor" });
+        }
+
+        if (user_row == null) {
+          db.close();
+          console.log("User not found");
+          return response.status(401).send({ message: "Usuario no válido" });
+        }
+        get_user_query.finalize();
+        db.close();
+        console.log(user_row);
+        return response.status(200).send({
+          message: "Usuario correcto",
+          data: user_row,
         });
-      
+      });
     });
   });
 }

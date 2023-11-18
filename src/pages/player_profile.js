@@ -8,35 +8,19 @@ export default function (player_name) {
   player_profile_page_container.id = "perfil_container";
   player_profile_page_container.innerHTML = perfil_html;
 
-  Insert_Profile_Data_To(player_profile_page_container, player_name);
+  Load_Profile_Data(player_profile_page_container, player_name);
 
   return player_profile_page_container;
 }
 
-async function Insert_Profile_Data_To(
-  player_profile_page_container,
-  player_name
-) {
-  const friend_request_button = player_profile_page_container.querySelector( "#friend-request-button");
-  const token = localStorage.getItem("token")
-  const user_name = localStorage.getItem("user_name")
-  if (token == null || user_name === player_name) {
-    friend_request_button.remove(); //chao
-  }
-  const username =
-    player_profile_page_container.querySelector("#username-item");
-  const email = player_profile_page_container.querySelector("#email-item");
-  const description =
-    player_profile_page_container.querySelector("#description-item");
-  const handicap =
-    player_profile_page_container.querySelector("#handicap-item");
+async function Load_Profile_Data(player_profile_page_container, player_name) {
 
   const response = await fetch(`../../request/player/${player_name}`, {
-    method: 'POST',
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ user_name: user_name }),
+    body: JSON.stringify({ user_name: localStorage.getItem("user_name") }),
   });
 
   const body_response = await response.json();
@@ -50,15 +34,13 @@ async function Insert_Profile_Data_To(
   const player_data = body_response.data;
   console.log(player_data);
 
-  if (player_data.status === friend_request_status.waiting) {
-    friend_request_button.textContent = "Solicitud de amistad enviada";
-    friend_request_button.classList.remove("btn-info");
-    friend_request_button.classList.add("btn-warning");
-  }
+  Load_Relationship_Status_Button(player_data, player_profile_page_container)
 
-  friend_request_button.addEventListener("click", function () {
-    Send_Friend_Request(player_name, token);
-  });
+  const username = player_profile_page_container.querySelector("#username-item");
+  const email = player_profile_page_container.querySelector("#email-item");
+  const description = player_profile_page_container.querySelector("#description-item");
+  const handicap = player_profile_page_container.querySelector("#handicap-item");
+
   username.textContent = player_data.username;
   email.textContent = player_data.email;
   description.textContent = player_data.description;
@@ -67,8 +49,53 @@ async function Insert_Profile_Data_To(
   player_profile_page_container.style.display = "flex";
 }
 
+function Load_Relationship_Status_Button(player_data, player_profile_page_container){
+
+  const relationship_status_button = player_profile_page_container.querySelector("#relationship-status-button");
+  const my_username = localStorage.getItem("user_name")
+
+  if(my_username == null) return;
+
+  const root = document.documentElement;
+
+  if (player_data.friendship_status == true) {
+
+    relationship_status_button.textContent = "Amigos";
+    root.style.setProperty('--relationship-status-button-color', 'linear-gradient(to right, rgb(28, 152, 93), rgb(34, 197, 94), rgb(28, 152, 93))');
+
+    root.style.setProperty('--relationship-status-button-hover-color', 'linear-gradient(to right, rgb(28, 152, 93), rgb(34, 197, 94), rgb(28, 152, 93))');
+
+    relationship_status_button.style.display = "block"
+    return
+  }
+
+  if( player_data.sender_username == my_username && player_data.receiving_username == player_data.username){
+    relationship_status_button.textContent = "Solicitud de amistad enviada";
+    root.style.setProperty('--relationship-status-button-color', 'linear-gradient(270deg, rgb(226, 171, 4) 20%, rgb(255, 193, 11) 50%, rgb(226, 171, 4) 80%)');
+
+    root.style.setProperty('--relationship-status-button-hover-color', 'linear-gradient(to right, rgb(28, 152, 93), rgb(34, 197, 94), rgb(28, 152, 93))');
+    relationship_status_button.style.display = "block"
+    return
+  }
+
+  if( player_data.sender_username == player_data.username && player_data.receiving_username == my_username){
+    relationship_status_button.textContent = "Aceptar solicitud de amistad";
+    root.style.setProperty('--relationship-status-button-color', 'linear-gradient(270deg, rgb(226, 171, 4) 20%, rgb(255, 193, 11) 50%, rgb(226, 171, 4) 80%)');
+
+    root.style.setProperty('--relationship-status-button-hover-color', 'linear-gradient(to right, rgb(28, 152, 93), rgb(34, 197, 94), rgb(28, 152, 93))');
+    relationship_status_button.style.display = "block"
+    return
+  }
+
+
+
+  relationship_status_button.addEventListener("click", function () {
+    Send_Friend_Request(player_name, token);
+  });
+
+}
+
 async function Send_Friend_Request(player_name, token) {
-  
   const response = await fetch(`../../request/add/friend/${player_name}`, {
     method: "POST",
     headers: {

@@ -13,11 +13,10 @@
             <li id="description-item" class="list-group-item">Descripción: </li>
           </ul>
           
-          <div class="card-body">
-            <button href="#" class="btn btn-primary">Ver estadísticas</button>
-            <button href="#" id="friend-request-button" class="btn btn-info">Enviar solicitud de amistad</button>
+          <div id ="card-footer">
 
-            <div class="card-body">
+            <div id="button-group">
+              <button href="#" class="btn btn-primary">Ver estadísticas</button>
               <!-- Botón para abrir el primer modal -->
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">Historial</button>
               <!-- Modal 1 -->
@@ -98,7 +97,7 @@
               </div>
 
               <!-- Botón para abrir el segundo modal -->
-              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal2">Amigos</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal2">Amigos</button>
               <!-- Modal 2 -->
               <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
                 <div class="modal-dialog">
@@ -123,6 +122,8 @@
                 </div>
               </div>
             </div>
+
+            <button href="#" id="relationship-status-button">Enviar solicitud de amistad</button>
         </div>
       </div>
     </div>
