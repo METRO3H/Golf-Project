@@ -93,6 +93,14 @@ function Load_Relationship_Status_Button(player_data, player_profile_page_contai
     Send_Friend_Request(player_name, token);
   });
 
+    // Hide the button if the user ID is the same as the user ID of the page
+    const username = localStorage.getItem('user_name'); // Get the user ID from local storage
+    console.log(username);
+    console.log(player_data.username);
+    if (username === player_data.username) {
+      const button = player_profile_page_container.querySelector('#relationship-status-button');
+      button.style.display = 'none';
+    }
 }
 
 async function Send_Friend_Request(player_name, token) {
