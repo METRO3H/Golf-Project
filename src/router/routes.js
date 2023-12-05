@@ -1,4 +1,5 @@
 import table from "../components/table.js";
+import home from "../pages/home.js";
 import test_Page from "../pages/test.js";
 import { Get_Register_Login_Page } from "../pages/sign.js";
 import { Get_Player_Page } from "./controllers/playerController.js";
@@ -20,7 +21,7 @@ export function Get_Page(route) {
     "/": {
       title: "Home",
       description: "Bienvenido al Club de Golf -> LPMMM",
-      content: "Bienvenido al Club de Golf -> LPMMM"
+      content: home(),
     },
     "/games": {
       title: "Games",
