@@ -5,6 +5,7 @@ import login_route from "../controllers/loginController.js"
 import register_route from "../controllers/registerController.js"
 import friend_request from "../controllers/friend_request_Controller.js"
 import submit_game_results from "../controllers/submit_game_results.js"
+import game_route from "../controllers/gameController.js"
 const router = express.Router()
 
 router.use('/player', player_routes)
