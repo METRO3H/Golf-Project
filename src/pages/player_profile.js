@@ -53,6 +53,7 @@ function Load_Relationship_Status_Button(player_data, player_profile_page_contai
 
   const relationship_status_button = player_profile_page_container.querySelector("#relationship-status-button");
   const my_username = localStorage.getItem("user_name")
+  const token = localStorage.getItem("token")
 
   if(my_username == null) return;
 
@@ -83,6 +84,12 @@ function Load_Relationship_Status_Button(player_data, player_profile_page_contai
     root.style.setProperty('--relationship-status-button-color', 'linear-gradient(270deg, rgb(226, 171, 4) 20%, rgb(255, 193, 11) 50%, rgb(226, 171, 4) 80%)');
 
     root.style.setProperty('--relationship-status-button-hover-color', 'linear-gradient(to right, rgb(28, 152, 93), rgb(34, 197, 94), rgb(28, 152, 93))');
+
+    relationship_status_button.addEventListener("click", function () {
+      Accept_Friend_Request(player_data.username, token);
+      location.reload();
+    });
+
     relationship_status_button.style.display = "block"
     return
   }
@@ -90,13 +97,33 @@ function Load_Relationship_Status_Button(player_data, player_profile_page_contai
 
 
   relationship_status_button.addEventListener("click", function () {
-    Send_Friend_Request(player_name, token);
+    Send_Friend_Request(player_data.username, token);
+    location.reload();
   });
 
 }
 
 async function Send_Friend_Request(player_name, token) {
-  const response = await fetch(`../../request/add/friend/${player_name}`, {
+  
+  const URL_FETCH = `../../request/friend/add/send/${player_name}`
+  console.log(URL_FETCH)
+  const response = await fetch(URL_FETCH, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const body_response = await response.json();
+
+  Show_Toast("Añadir amigo", body_response.message);
+
+  if (!response.ok) return;
+}
+
+async function Accept_Friend_Request(player_name, token){
+  const URL_FETCH = `../../request/friend/add/accept/${player_name}`
+  console.log(URL_FETCH)
+  const response = await fetch(URL_FETCH, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,

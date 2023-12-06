@@ -36,7 +36,7 @@ const sql_create_tables = [
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     sender_username TEXT,
     receiving_username TEXT, 
-    status TEXT,
+    status TEXT DEFAULT "waiting",
     FOREIGN KEY(sender_username) REFERENCES Users(username),
     FOREIGN KEY(receiving_username) REFERENCES Users(username)
 );`,

@@ -68,11 +68,27 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 50%);
     position: relative;
+    padding: 15px;
+}
+#game-invitation{
+    display: flex;
+    flex-direction: row;
+
+}
+#list-of-friends-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 #create-game{
+
     grid-area: crear partida;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
+
+
 @media (max-width: 805px) {
     #create-game-main-div {
       width: 100%;
