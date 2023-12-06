@@ -1,0 +1,33 @@
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.header {
+    background: var(--navbar_color_gradient);/* Adjust colors as needed */
+    color: #fff;
+    margin-top: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.virtudes, .reglas {
+    flex-direction: column; /* Alinea verticalmente /
+    align-items: center; / Centra horizontalmente */
+    padding: 20px;
+    color: #000655;
+    border-radius: 10px;
+    border-color: black;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+footer {
+    background: var(--navbar_color_gradient);/* Adjust colors as needed */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}

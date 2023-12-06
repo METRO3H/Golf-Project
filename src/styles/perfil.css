@@ -7,6 +7,7 @@
 .card.mb-3 {
   width: 100%;
 }
+
 #card-footer{
   display: flex;
   flex-direction: column;
@@ -33,11 +34,15 @@
   cursor: pointer;
 
   width: 290px;
-  
 }
+
 #relationship-status-button:hover {
   background: var(--relationship-status-button-hover-color);
   color: black;
   opacity: 90%;
   box-shadow: 0 0 11px rgba(0, 0, 0, 0.3);
+}
+
+.list-group-item {
+  background-color: transparent;
 }

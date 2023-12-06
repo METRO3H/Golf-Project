@@ -8,6 +8,7 @@ import submit_game_results from "../controllers/submit_game_results.js"
 const router = express.Router()
 
 router.use('/player', player_routes)
+router.use('/games', game_route)
 router.use('/login', login_route)
 router.use('/register', register_route)
 router.use('/profile', profile_route)

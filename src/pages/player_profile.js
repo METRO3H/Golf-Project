@@ -32,7 +32,7 @@ async function Load_Profile_Data(player_profile_page_container, player_name) {
   }
 
   const player_data = body_response.data;
-  console.log(player_data);
+
 
   Load_Relationship_Status_Button(player_data, player_profile_page_container)
 
@@ -101,6 +101,13 @@ function Load_Relationship_Status_Button(player_data, player_profile_page_contai
     location.reload();
   });
 
+    // Hide the button if the user ID is the same as the user ID of the page
+    const username = localStorage.getItem('user_name'); // Get the user ID from local storage
+
+    if (username === player_data.username) {
+      const button = player_profile_page_container.querySelector('#relationship-status-button');
+      button.style.display = 'none';
+    }
 }
 
 async function Send_Friend_Request(player_name, token) {
