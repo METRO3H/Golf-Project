@@ -1,6 +1,7 @@
 import table from "../components/table.js";
 import home from "../pages/home.js";
 import test_Page from "../pages/test.js";
+import games from "../pages/games.js";
 import { Get_Register_Login_Page } from "../pages/sign.js";
 import { Get_Player_Page } from "./controllers/playerController.js";
 import User_Profile from "../pages/user_profile.js";
@@ -26,7 +27,7 @@ export function Get_Page(route) {
     "/games": {
       title: "Games",
       description: "Juegos de Golf",
-      content: "Juegos de Golf"
+      content: games(),
     },
     "/table": {
       title: "Table",

@@ -6,13 +6,14 @@
 }
 
 .header {
-    background: black;
+    background: var(--navbar_color_gradient);/* Adjust colors as needed */
     color: #fff;
     padding: 10px;
+    margin-top: 10px;
     text-align: center;
 }
 
-section {
+.virtudes, .reglas {
     flex-direction: column; /* Alinea verticalmente */
     align-items: center; /* Centra horizontalmente */
     padding: 20px;
@@ -24,7 +25,7 @@ section {
 }
 
 footer {
-    background: black;
+    background: var(--navbar_color_gradient);/* Adjust colors as needed */
     color: #fff;
     padding: 10px;
     text-align: center;
