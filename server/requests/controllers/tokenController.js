@@ -19,7 +19,6 @@ export function Verify_Token(request, response, next){
         console.error('Token inválido -> ', error)
         return response.status(401).send({ message: 'Token inválido' });
       }
-      console.log("token valido")
       request.data = decoded;
       next();
     });

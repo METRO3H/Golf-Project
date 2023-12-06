@@ -1,0 +1,22 @@
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .input-group {
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+#golf-scores{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+}
+  #inputs{
+    height: 80%;
+    overflow: auto;
+  }

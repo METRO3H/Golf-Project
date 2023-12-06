@@ -1,0 +1,111 @@
+
+#game-container{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    background: linear-gradient(to right, #1B5E20 0%, #00FF00 50%, #1B5E20 100%);
+}
+#create-game-main-div{
+    display: grid;
+    grid-template-areas: 
+    "sidebar settings settings settings settings"
+    "sidebar settings settings settings settings"
+    "sidebar settings settings settings settings"
+    "sidebar settings settings settings settings"
+    "sidebar settings settings settings settings"
+    "sidebar create_game create_game create_game create_game"
+    ;
+    gap: 5px;
+    width: 805px;
+    height: 90%;
+    font-family: 'Argent CF Extra Bold', sans-serif;
+    border-width: 3px;
+
+    
+}
+#sidebar-players{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    grid-area: sidebar;
+    background: white;
+    border-radius: 10px;
+    border-width: 2px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 50%);
+}
+
+.player-item{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 90%;
+    background: white;
+    outline: 2px solid black;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: border-box;
+    
+}
+.player-icon-container{
+    width: 50px;
+    height: 50px;
+    margin-right: var(--bs-list-group-item-padding-x);
+}
+.user-icon-svg{
+    width: 50px;
+    height: 50px;
+}
+.player-item-title{
+    font-size: 1.25rem;
+}
+#game-settings{
+    grid-area: settings;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 50%);
+    position: relative;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    max-height: 495px
+}
+#game-invitation{
+    display: flex;
+    flex-direction: row;
+
+}
+#list-of-friends-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.player-item:hover{
+    opacity: 75%;
+    cursor: pointer;
+}
+
+#start-game{
+
+    grid-area: crear partida;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width: 805px) {
+    #create-game-main-div {
+      width: 100%;
+    }
+}
+
+#selecc{
+    border-width: 1px;
+    border-color: black;
+}

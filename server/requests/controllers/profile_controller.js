@@ -7,8 +7,9 @@ const router = express.Router()
 
 router.get("/", Verify_Token, function(request, response){
     
-    const user_name = request.data.username;
   
+
+
     const db = new sqlite3.Database(database_path, (error) => {
       if (error) {
         console.error("Error al abrir la base de datos. -> ", error.message);

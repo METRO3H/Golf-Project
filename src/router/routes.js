@@ -4,6 +4,8 @@ import { Get_Register_Login_Page } from "../pages/sign.js";
 import { Get_Player_Page } from "./controllers/playerController.js";
 import User_Profile from "../pages/user_profile.js";
 import Create_Game from "../pages/create_game.js"
+import game from "../pages/game.js"
+import create_game from "../pages/create_game.js";
 
 export function Get_Page(route) {
   const url_parts = route.split("/");
@@ -42,8 +44,11 @@ export function Get_Page(route) {
 
   if(parent_route === "/player") return Get_Player_Page(url_parts)
   if(parent_route === "/profile") return User_Profile()
-  if(parent_route === "/create_game") return Create_Game()
-
+  if(parent_route === "/game") return game(url_parts)
+  
+  if(parent_route === "/create_game"){
+    return create_game()
+  }
   if(parent_route === "/sign"){
     if(localStorage.getItem('token') || localStorage.getItem('user_name')){
       window.location.href = "/player/all"

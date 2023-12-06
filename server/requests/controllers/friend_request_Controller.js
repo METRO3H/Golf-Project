@@ -165,7 +165,6 @@ router.post("/list", Verify_Token, function (request, response) {
         }
         get_all_friends.finalize();
 
-        console.log(friend_list);
         db.close();
         return response.status(200).send({
           message: "Amigos encontrados",
