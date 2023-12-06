@@ -9,6 +9,10 @@ export default function(){
     
     Insert_Profile_Data_To(player_profile_page_container)
 
+    // Hide the button
+    const button = player_profile_page_container.querySelector('#relationship-status-button');
+    button.style.display = 'none';
+
     return {
         title: "Perfil",
         description: "Perfil del Usuario",
