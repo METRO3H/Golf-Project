@@ -8,14 +8,15 @@
 .header {
     background: var(--navbar_color_gradient);/* Adjust colors as needed */
     color: #fff;
+    margin-top: 10px;
     padding: 10px;
     margin-top: 10px;
     text-align: center;
 }
 
 .virtudes, .reglas {
-    flex-direction: column; /* Alinea verticalmente */
-    align-items: center; /* Centra horizontalmente */
+    flex-direction: column; /* Alinea verticalmente /
+    align-items: center; / Centra horizontalmente */
     padding: 20px;
     color: #000655;
     border-radius: 10px;
